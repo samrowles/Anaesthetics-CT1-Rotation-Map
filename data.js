@@ -2166,5 +2166,15 @@ const ROTATIONS_DATA = [
       { stage: "Feb 29 - Aug 29 (6m)", hosp: "Leicester Royal Infirmary", desc: "LRI specialist anaesthesia modules" },
       { stage: "Aug 29 - Feb 30 (6m)", hosp: "Leicester Royal Infirmary", desc: "LRI Stage 1 completion" },
     ]
-  },
+  }
 ];
+
+function getRotationHospitalBases(rot) {
+  return [...new Set(rot.stages.map(s => s.hosp))];
+}
+
+// Window attachments for cross-script safety
+window.HOSPITALS = HOSPITALS;
+window.REGION_COLORS = REGION_COLORS;
+window.ROTATIONS_DATA = ROTATIONS_DATA;
+window.getRotationHospitalBases = getRotationHospitalBases;
