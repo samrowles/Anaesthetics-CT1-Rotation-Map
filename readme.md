@@ -12,14 +12,12 @@ An interactive, open-source web application designed to help UK Anaesthetics tra
 - **Duration-Weighted Training Metric:** Automatically calculates the clinical split between Tertiary / Teaching hospitals and District General Hospitals (DGH), weighted by placement duration (e.g. 3-month, 6-month, or 12-month blocks).
 - **Visual Balance Bar:** Two-tone progress bar in the rotation inspector and compact badge pills (`XX% Tert • YY% DGH`) on rotation feed cards.
 
-### ℹ️ Hospital "Ground Truth" Trust Profiles
-- **Clinical & Practical Intelligence:** Curated profiles for all 103 NHS acute hospitals across the UK.
-- **Trust Ground Truth:**
+### ℹ️ Hospital Trust Profiles
   - 📋 **Electronic Patient Records (EPR):** System deployed (Epic, Cerner Millennium, CareFlow, Sunrise, Nervecentre, Meditech, Welsh Clinical Portal, etc.).
   - 🚗 **Doctor Parking Policies:** Barrier schemes, multi-storeys, staff permit rules, and Park & Ride options.
   - 🚆 **Rail & Transit Connections:** Nearest stations, walking times, and transit connections.
   - 🩺 **Specialist Clinical Services:** Major Trauma Centres, Cardiothoracic surgery, ECMO, Neuroanaesthesia, Regional Burns & Plastic surgery, and Paediatric ICUs.
-- **Interactive Intel Modal:** Accessible via hospital chips, map pins, or the national overview. Displays all CT1 rotations that include each hospital with one-click navigation.
+- **Interactive Intel Modal:** Accessible via hospital chips, map pins, or the national overview. Displays all ST4 rotations that include each hospital with one-click navigation.
 
 ### 🌅 Realistic Shift Commute Modeling (07:30 & 18:00 Peak Traffic)
 - **Calibrated for Handover:** Commute calculations factor in UK doctor shift patterns:
