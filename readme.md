@@ -8,7 +8,7 @@ An interactive, open-source web application designed to help UK Anaesthetics tra
 
 ## Features
 
-- **National Overview Map with Network Lines:** All 130+ NHS hospital trusts colour-coded by NHS region, connected by interactive dashed rotation route lines. Hover over any line or hospital to highlight linked placements, or click to dive into details.
+- **National Overview Map with Network Lines:** All 103 NHS acute hospital placement sites colour-coded by NHS region, connected by interactive dashed rotation route lines. Hover over any line or hospital to highlight linked placements, or click to dive into details.
 - **Chronological Route Paths:** Numbers each placement stage (`1`, `2`, `3`...) and connects them with sequential route lines to illustrate the multi-year rotational footprint.
 - **Personalized Living Hubs & Commute Calculator (🏡):**
   - **🚗 Driving / Mixed:** Motorway and bypass corridors for trainees with cars.

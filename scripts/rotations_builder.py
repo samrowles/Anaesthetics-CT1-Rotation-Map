@@ -1,7 +1,4 @@
-import csv
-
-with open('ct1_rotations.csv', encoding='utf-8') as f:
-    csv_rows = {int(r['Current Assigned Rank']): r for r in csv.DictReader(f)}
+from build_ct1_data import csv_rows
 
 def build_rotations():
     rotations = []

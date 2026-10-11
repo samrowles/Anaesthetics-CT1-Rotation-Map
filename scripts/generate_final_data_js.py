@@ -31,6 +31,18 @@ all_rotations.extend(get_eoe_rotations(csv_rows))
 all_rotations.extend(get_north_west_rotations(csv_rows))
 all_rotations.extend(get_east_midlands_rotations(csv_rows))
 
+# 1. Filter out rotations with no places
+active_rotations = [r for r in all_rotations if int(r.get("places", 0) or 0) > 0]
+
+# 2. Identify hospitals used in the remaining active rotations
+used_hospitals = set()
+for r in active_rotations:
+    for s in r.get("stages", []):
+        used_hospitals.add(s["hosp"])
+
+# 3. Filter hospitals to only those used in active rotations
+active_hospitals = {name: data for name, data in HOSPITALS.items() if name in used_hospitals}
+
 lines = []
 lines.append("// ============================================================================")
 lines.append("// CT1 Anaesthetics National Placement Data")
@@ -40,7 +52,7 @@ lines.append("const HOSPITALS = {")
 
 # Group hospitals by region for clean reading
 hosps_by_reg = {}
-for name, data in HOSPITALS.items():
+for name, data in active_hospitals.items():
     reg = data["region"]
     if reg not in hosps_by_reg:
         hosps_by_reg[reg] = []
@@ -67,7 +79,7 @@ lines.append("const ROTATIONS_DATA = [")
 
 # Group rotations by region for clean code blocks
 rot_by_reg = {}
-for r in all_rotations:
+for r in active_rotations:
     reg = r["region"]
     if reg not in rot_by_reg:
         rot_by_reg[reg] = []

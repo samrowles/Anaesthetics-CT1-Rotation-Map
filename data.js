@@ -6,8 +6,6 @@ const HOSPITALS = {
   // East Midlands
   "Boston Pilgrim Hospital": { coords: [52.9892, -0.0071], region: "East Midlands" },
   "Chesterfield Royal Hospital": { coords: [53.2272, -1.3912], region: "East Midlands" },
-  "Glenfield Hospital, Leicester": { coords: [52.6542, -1.1802], region: "East Midlands" },
-  "Kettering General Hospital": { coords: [52.3992, -0.7381], region: "East Midlands" },
   "Kings Mill Hospital, Mansfield": { coords: [53.1362, -1.2181], region: "East Midlands" },
   "Leicester Royal Infirmary": { coords: [52.6282, -1.1342], region: "East Midlands" },
   "Lincoln County Hospital": { coords: [53.2321, -0.5182], region: "East Midlands" },
@@ -18,8 +16,6 @@ const HOSPITALS = {
   "Royal Derby Hospital": { coords: [52.9102, -1.5121], region: "East Midlands" },
 
   // East of England
-  "Addenbrooke's Hospital, Cambridge": { coords: [52.1751, 0.1408], region: "East of England" },
-  "Basildon Cardiothoracic Centre": { coords: [51.5562, 0.4491], region: "East of England" },
   "Bedford Hospital": { coords: [52.1292, -0.4683], region: "East of England" },
   "Broomfield Hospital, Chelmsford": { coords: [51.7762, 0.4682], region: "East of England" },
   "Colchester Hospital": { coords: [51.9142, 0.9011], region: "East of England" },
@@ -31,10 +27,7 @@ const HOSPITALS = {
   "Peterborough City Hospital": { coords: [52.5844, -0.2786], region: "East of England" },
   "Princess Alexandra Hospital, Harlow": { coords: [51.7725, 0.0894], region: "East of England" },
   "Queen Elizabeth Hospital, Kings Lynn": { coords: [52.7531, 0.4431], region: "East of England" },
-  "Royal Papworth Hospital, Cambridge": { coords: [52.1738, 0.1388], region: "East of England" },
-  "Southend Hospital": { coords: [51.5544, 0.6861], region: "East of England" },
   "Watford General Hospital": { coords: [51.6471, -0.4035], region: "East of England" },
-  "West Suffolk Hospital, Bury St Edmunds": { coords: [52.2321, 0.7042], region: "East of England" },
 
   // Kent, Surrey and Sussex
   "Maidstone Hospital": { coords: [51.2747, 0.4857], region: "Kent, Surrey and Sussex" },
@@ -43,27 +36,12 @@ const HOSPITALS = {
 
   // London
   "Barnet Hospital (BCF)": { coords: [51.6521, -0.2223], region: "London" },
-  "Charing Cross Hospital": { coords: [51.4883, -0.2192], region: "London" },
   "Chelsea & Westminster Hospital": { coords: [51.4842, -0.1824], region: "London" },
-  "Guy's & St Thomas' Hospital": { coords: [51.4982, -0.1192], region: "London" },
   "Hammersmith Hospital": { coords: [51.5171, -0.2372], region: "London" },
-  "Hillingdon Hospital": { coords: [51.5232, -0.4601], region: "London" },
   "Homerton University Hospital": { coords: [51.5504, -0.0483], region: "London" },
-  "King's College Hospital": { coords: [51.4682, -0.0931], region: "London" },
-  "Moorfields Eye Hospital": { coords: [51.5273, -0.0881], region: "London" },
-  "Northwick Park Hospital": { coords: [51.5772, -0.3202], region: "London" },
-  "Queen Square (NHNN)": { coords: [51.5221, -0.1224], region: "London" },
   "Queen's Hospital, Romford": { coords: [51.5691, 0.1792], region: "London" },
-  "RNOH Stanmore": { coords: [51.6262, -0.3204], region: "London" },
-  "Royal Brompton Hospital": { coords: [51.4902, -0.1693], region: "London" },
   "Royal Free Hospital": { coords: [51.5532, -0.1652], region: "London" },
-  "Royal London Hospital": { coords: [51.5192, -0.0593], region: "London" },
-  "St Bartholomew's Hospital (Barts Cardiac)": { coords: [51.5173, -0.1002], region: "London" },
-  "St George's Hospital, Tooting": { coords: [51.4272, -0.1752], region: "London" },
-  "St Mary's Hospital, Paddington": { coords: [51.5172, -0.1742], region: "London" },
-  "University College Hospital (UCH)": { coords: [51.5252, -0.1362], region: "London" },
   "West Middlesex University Hospital": { coords: [51.4782, -0.3271], region: "London" },
-  "Whittington Hospital (London General)": { coords: [51.5661, -0.1402], region: "London" },
 
   // North East
   "Cumberland Infirmary, Carlisle": { coords: [54.8965, -2.9577], region: "North East" },
@@ -93,14 +71,11 @@ const HOSPITALS = {
   "Musgrove Park Hospital, Taunton": { coords: [51.0142, -3.1202], region: "South West - Peninsula" },
   "North Devon District Hospital, Barnstaple": { coords: [51.0922, -4.0504], region: "South West - Peninsula" },
   "Royal Cornwall Hospital, Truro": { coords: [50.2712, -5.0931], region: "South West - Peninsula" },
-  "Royal Devon & Exeter Hospital": { coords: [50.7152, -3.5131], region: "South West - Peninsula" },
-  "Torbay Hospital": { coords: [50.4852, -3.5571], region: "South West - Peninsula" },
 
   // South West - Severn
   "Bristol Royal Infirmary (UHBW)": { coords: [51.4582, -2.5971], region: "South West - Severn" },
   "Gloucestershire Royal Hospital": { coords: [51.8682, -2.2341], region: "South West - Severn" },
   "Great Western Hospital, Swindon": { coords: [51.5332, -1.7331], region: "South West - Severn" },
-  "Royal United Hospital, Bath": { coords: [51.3917, -2.391], region: "South West - Severn" },
   "Southmead Hospital (NBT)": { coords: [51.4972, -2.5931], region: "South West - Severn" },
   "Yeovil District Hospital": { coords: [50.9452, -2.6339], region: "South West - Severn" },
 
@@ -118,8 +93,6 @@ const HOSPITALS = {
   "Morriston Hospital, Swansea": { coords: [51.6702, -3.9262], region: "Wales" },
   "Prince Charles Hospital, Merthyr Tydfil": { coords: [51.7641, -3.3849], region: "Wales" },
   "Princess of Wales Hospital, Bridgend": { coords: [51.5174, -3.5717], region: "Wales" },
-  "Royal Glamorgan Hospital, Llantrisant": { coords: [51.5452, -3.3981], region: "Wales" },
-  "The Walton Centre, Liverpool": { coords: [53.4752, -2.9421], region: "Wales" },
   "University Hospital of Wales, Cardiff": { coords: [51.5072, -3.1902], region: "Wales" },
   "Ysbyty Gwynedd, Bangor": { coords: [53.209, -4.162], region: "Wales" },
 
@@ -134,14 +107,10 @@ const HOSPITALS = {
   "Southampton General Hospital": { coords: [50.9341, -1.4322], region: "Wessex" },
 
   // West Midlands
-  "Midlands Met University Hospital": { coords: [52.4972, -1.9672], region: "West Midlands" },
   "New Cross Hospital, Wolverhampton": { coords: [52.5972, -2.0972], region: "West Midlands" },
   "Queen Elizabeth Hospital Birmingham": { coords: [52.4512, -1.9402], region: "West Midlands" },
-  "Royal Shrewsbury Hospital": { coords: [52.7062, -2.7842], region: "West Midlands" },
-  "Royal Stoke University Hospital": { coords: [53.0052, -2.2152], region: "West Midlands" },
   "Russells Hall Hospital, Dudley": { coords: [52.5024, -2.1191], region: "West Midlands" },
   "UHCW Coventry": { coords: [52.4172, -1.4362], region: "West Midlands" },
-  "Walsall Manor Hospital": { coords: [52.5852, -1.9962], region: "West Midlands" },
   "Warwick Hospital": { coords: [52.2852, -1.5972], region: "West Midlands" },
 
   // Yorkshire and the Humber
@@ -154,13 +123,11 @@ const HOSPITALS = {
   "Doncaster Royal Infirmary": { coords: [53.5282, -1.1062], region: "Yorkshire and the Humber" },
   "Goole and District Hospital": { coords: [53.7166, -0.8745], region: "Yorkshire and the Humber" },
   "Harrogate District Hospital": { coords: [53.9937, -1.5176], region: "Yorkshire and the Humber" },
-  "Huddersfield Royal Infirmary": { coords: [53.6553, -1.8151], region: "Yorkshire and the Humber" },
   "Hull Royal Infirmary": { coords: [53.7442, -0.3582], region: "Yorkshire and the Humber" },
   "Leeds General Infirmary": { coords: [53.8012, -1.5532], region: "Yorkshire and the Humber" },
   "Northern General Hospital, Sheffield": { coords: [53.4152, -1.4582], region: "Yorkshire and the Humber" },
   "Pinderfields Hospital, Wakefield": { coords: [53.6932, -1.4842], region: "Yorkshire and the Humber" },
   "Rotherham Hospital": { coords: [53.4182, -1.3482], region: "Yorkshire and the Humber" },
-  "Royal Hallamshire Hospital, Sheffield": { coords: [53.3785, -1.4932], region: "Yorkshire and the Humber" },
   "Scarborough Hospital": { coords: [54.2792, -0.4282], region: "Yorkshire and the Humber" },
   "Scunthorpe General Hospital": { coords: [53.5902, -0.6692], region: "Yorkshire and the Humber" },
   "York Hospital": { coords: [53.9702, -1.0832], region: "Yorkshire and the Humber" },
@@ -261,48 +228,6 @@ const ROTATIONS_DATA = [
       { stage: "CT2 - CT3 (24m)", hosp: "Musgrove Park Hospital, Taunton", desc: "Musgrove Park shared placement" },
     ]
   },
-  {
-    id: "ct1-severn-north-bristol-4",
-    code: "South West - Severn - North Bristol - CT1 - Feb - 4",
-    region: "South West - Severn",
-    title: "North Bristol (Southmead) Severn Track",
-    places: "0",
-    hubs: {
-      driver: { name: "North Bristol / Westbury-on-Trym", coords: [51.498, -2.616], desc: "5-10m drive to Southmead Hospital.", alert: "Bristol CAZ in city centre, but Southmead is outside CAZ." },
-      transit: { name: "Bristol Parkway / Horfield", coords: [51.513, -2.542], desc: "Frequent buses (76, 77) direct to Southmead Hospital.", alert: "Direct bus routes from North Bristol." }
-    },
-    stages: [
-      { stage: "CT1 - CT3", hosp: "Southmead Hospital (NBT)", desc: "North Bristol Severn footprint placement" },
-    ]
-  },
-  {
-    id: "ct1-severn-bath-1",
-    code: "South West - Severn - Bath - CT1 - Feb - 1",
-    region: "South West - Severn",
-    title: "Bath (Royal United Hospital) Severn Track",
-    places: "0",
-    hubs: {
-      driver: { name: "Bath / Saltford", coords: [51.401, -2.457], desc: "A4 corridor. 15m to Royal United Hospital Bath; 25m to Bristol.", alert: "Bath clean air zone applies in central city; RUH has staff parking." },
-      transit: { name: "Bath Spa", coords: [51.377, -2.357], desc: "Frequent buses from Bath Spa station to RUH (approx 15-20m).", alert: "Bus connections required from Bath Spa railway station." }
-    },
-    stages: [
-      { stage: "CT1 - CT3", hosp: "Royal United Hospital, Bath", desc: "Bath RUH Severn footprint placement" },
-    ]
-  },
-  {
-    id: "ct1-severn-swindon-5",
-    code: "South West - Severn - Swindon - CT1 - Feb - 5",
-    region: "South West - Severn",
-    title: "Swindon (Great Western) Severn Track",
-    places: "0",
-    hubs: {
-      driver: { name: "Swindon South / Coate Water", coords: [51.536, -1.745], desc: "Directly adjacent to M4 J15 and A419. 3-5m to GWH.", alert: "Immediate access to hospital off M4 J15." },
-      transit: { name: "Swindon Central", coords: [51.564, -1.785], desc: "Frequent bus routes (1, 1A, 2) from Swindon station directly to GWH.", alert: "Direct buses run every 10 mins to hospital." }
-    },
-    stages: [
-      { stage: "CT1 - CT3", hosp: "Great Western Hospital, Swindon", desc: "Great Western Hospital Swindon Severn placement" },
-    ]
-  },
   // ==================== SOUTH WEST - PENINSULA ====================
   {
     id: "ct1-peninsula-north-devon-2",
@@ -319,34 +244,6 @@ const ROTATIONS_DATA = [
     ]
   },
   {
-    id: "ct1-peninsula-taunton-6",
-    code: "South West - Peninsula - Taunton - CT1 - Feb - 6",
-    region: "South West - Peninsula",
-    title: "Taunton (Musgrove Park) 3-Year Post",
-    places: "0",
-    hubs: {
-      driver: { name: "Taunton / Wellington", coords: [51.015, -3.125], desc: "5-10m drive to Musgrove Park Hospital.", alert: "Easy access from M5 J25/J26." },
-      transit: { name: "Taunton Central", coords: [51.023, -3.103], desc: "Direct buses and short cycle from Taunton rail station.", alert: "Good bus services linking station and town centre to Musgrove Park." }
-    },
-    stages: [
-      { stage: "CT1 - CT3 (36m)", hosp: "Musgrove Park Hospital, Taunton", desc: "Musgrove Park Hospital for full 3-year programme" },
-    ]
-  },
-  {
-    id: "ct1-peninsula-torbay-5",
-    code: "South West - Peninsula - Torbay - CT1 - Feb - 5",
-    region: "South West - Peninsula",
-    title: "Torbay Hospital 3-Year Post",
-    places: "0",
-    hubs: {
-      driver: { name: "Torquay / Newton Abbot", coords: [50.505, -3.585], desc: "A380 corridor. 8m from Newton Abbot, 10m from Torquay centre.", alert: "Newton Abbot offers dual access towards Exeter and Torbay." },
-      transit: { name: "Torre / Torquay", coords: [50.478, -3.538], desc: "Torre station is within walking/bus distance of Torbay Hospital.", alert: "Torre railway station is ~15m walk or short bus ride to hospital." }
-    },
-    stages: [
-      { stage: "CT1 - CT3 (36m)", hosp: "Torbay Hospital", desc: "Torbay Hospital for full 3-year programme" },
-    ]
-  },
-  {
     id: "ct1-peninsula-cornwall-4",
     code: "South West - Peninsula - Cornwall - CT1 - Feb - 4",
     region: "South West - Peninsula",
@@ -358,20 +255,6 @@ const ROTATIONS_DATA = [
     },
     stages: [
       { stage: "CT1 - CT3 (36m)", hosp: "Royal Cornwall Hospital, Truro", desc: "Treliske site for full 3-year programme" },
-    ]
-  },
-  {
-    id: "ct1-peninsula-exeter-1",
-    code: "South West - Peninsula - Exeter - CT1 - Feb - 1",
-    region: "South West - Peninsula",
-    title: "Exeter (Royal Devon & Exeter) 3-Year Post",
-    places: "0",
-    hubs: {
-      driver: { name: "Exeter / Topsham", coords: [50.705, -3.505], desc: "5-10m drive to RD&E Wonford. Easy access from M5 J30.", alert: "Staff parking permit system at Wonford." },
-      transit: { name: "Exeter Central / St Davids", coords: [50.728, -3.535], desc: "Direct bus routes (H bus) from central Exeter to RD&E Wonford.", alert: "H bus runs directly every 15 mins to hospital entrance." }
-    },
-    stages: [
-      { stage: "CT1 - CT3 (36m)", hosp: "Royal Devon & Exeter Hospital", desc: "Wonford site for full 3-year programme" },
     ]
   },
   {

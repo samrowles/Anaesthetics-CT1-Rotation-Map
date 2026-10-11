@@ -1,8 +1,13 @@
 import csv
 import json
 
-# Read CSV data
-with open('ct1_rotations.csv', encoding='utf-8') as f:
+import os
+
+CSV_PATH = 'ct1_rotations.csv'
+if not os.path.exists(CSV_PATH):
+    CSV_PATH = '/home/sam/.gemini/antigravity/brain/b58aead2-ac90-4755-be77-3558d7c05e21/.user_uploaded/media_1791741089771_5be65376.csv'
+
+with open(CSV_PATH, encoding='utf-8') as f:
     csv_rows = {int(r['Current Assigned Rank']): r for r in csv.DictReader(f)}
 
 HOSPITALS = {
