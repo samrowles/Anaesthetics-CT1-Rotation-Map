@@ -17,7 +17,7 @@ An interactive, open-source web application designed to help UK Anaesthetics tra
   - 🚗 **Doctor Parking Policies:** Barrier schemes, multi-storeys, staff permit rules, and Park & Ride options.
   - 🚆 **Rail & Transit Connections:** Nearest stations, walking times, and transit connections.
   - 🩺 **Specialist Clinical Services:** Major Trauma Centres, Cardiothoracic surgery, ECMO, Neuroanaesthesia, Regional Burns & Plastic surgery, and Paediatric ICUs.
-- **Interactive Intel Modal:** Accessible via hospital chips, map pins, or the national overview. Displays all ST4 rotations that include each hospital with one-click navigation.
+- **Interactive Intel Modal:** Accessible via hospital chips, map pins, or the national overview. Displays all CT1 rotations that include each hospital with one-click navigation.
 
 ### 🌅 Realistic Shift Commute Modeling (07:30 & 18:00 Peak Traffic)
 - **Calibrated for Handover:** Commute calculations factor in UK doctor shift patterns:
