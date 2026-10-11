@@ -1256,6 +1256,7 @@ const ROTATIONS_DATA = [
     region: "Yorkshire and the Humber",
     title: "South Yorkshire 6-Monthly Rotations (2E)",
     places: "2",
+    isPool: true,
     hubs: {
       driver: { name: "Sheffield North / Meadowhall (M1 J34)", coords: [53.415, -1.415], desc: "M1 corridor. 12m to Northern General, 15m to Rotherham, 25m to Barnsley.", alert: "Strategic location linking Sheffield and Rotherham hospitals." },
       transit: { name: "Meadowhall Interchange", coords: [53.417, -1.412], desc: "Supertram into central Sheffield; direct trains to Rotherham, Barnsley, Doncaster.", alert: "Excellent multi-modal transport hub for South Yorkshire." }
@@ -1273,6 +1274,7 @@ const ROTATIONS_DATA = [
     region: "Yorkshire and the Humber",
     title: "South Yorkshire Network (Barnsley, Doncaster, Sheffield, Rotherham)",
     places: "4",
+    isPool: true,
     hubs: {
       driver: { name: "Rotherham / M1 J33/J34", coords: [53.432, -1.355], desc: "Equidistant across South Yorkshire footprint via M1 and M18.", alert: "M18 provides rapid transit east to Doncaster." },
       transit: { name: "Sheffield / Meadowhall", coords: [53.378, -1.462], desc: "Central rail connections across the South Yorkshire region.", alert: "Rail lines run directly from Sheffield to Barnsley and Doncaster." }
@@ -1291,6 +1293,7 @@ const ROTATIONS_DATA = [
     region: "Yorkshire and the Humber",
     title: "West Yorkshire Core Network (Leeds, Bradford, Airedale, Calderdale)",
     places: "4",
+    isPool: true,
     hubs: {
       driver: { name: "Leeds West / Pudsey (Ring Road / M621)", coords: [53.795, -1.665], desc: "Strategic nexus between Leeds (15m), Bradford (15m), and M62 towards Calderdale/Wakefield.", alert: "Pudsey/Bramley gives balanced access east and west." },
       transit: { name: "Leeds Central", coords: [53.795, -1.547], desc: "Dense commuter rail network: 18m to Bradford, 15m to Wakefield, 25m to Halifax.", alert: "Fast local trains connect West Yorkshire towns efficiently." }
@@ -1310,6 +1313,7 @@ const ROTATIONS_DATA = [
     region: "Yorkshire and the Humber",
     title: "West Yorkshire 6-Monthly Rotations (1E)",
     places: "1",
+    isPool: true,
     hubs: {
       driver: { name: "Leeds West / Pudsey (Ring Road / M621)", coords: [53.795, -1.665], desc: "Strategic nexus between Leeds (15m), Bradford (15m), and M62 towards Calderdale/Wakefield.", alert: "Pudsey/Bramley gives balanced access east and west." },
       transit: { name: "Leeds Central", coords: [53.795, -1.547], desc: "Dense commuter rail network: 18m to Bradford, 15m to Wakefield, 25m to Halifax.", alert: "Fast local trains connect West Yorkshire towns efficiently." }
@@ -1329,6 +1333,7 @@ const ROTATIONS_DATA = [
     region: "Yorkshire and the Humber",
     title: "North Yorkshire: York, Scarborough & Harrogate",
     places: "2",
+    isPool: true,
     hubs: {
       driver: { name: "York Ring Road / Malton (A64)", coords: [53.995, -1.055], desc: "A64 corridor. 10m into York Hospital; 45m to Scarborough; 35m west to Harrogate via A59.", alert: "Scarborough is on the East Coast (~40 mi from York via A64)." },
       transit: { name: "York Station", coords: [53.958, -1.093], desc: "Direct trains to Harrogate (30m) and Scarborough (48m).", alert: "York station is a major hub with direct lines to both Harrogate and Scarborough." }
@@ -1345,6 +1350,7 @@ const ROTATIONS_DATA = [
     region: "Yorkshire and the Humber",
     title: "East Yorkshire & Humber: Hull, Scunthorpe & Grimsby",
     places: "2",
+    isPool: true,
     hubs: {
       driver: { name: "Hessle / Humber Bridge (A15)", coords: [53.715, -0.445], desc: "Immediate access to Humber Bridge. 12m to Hull Royal; 25m south to Scunthorpe; 35m to Grimsby.", alert: "Humber Bridge connects north and south banks seamlessly (\u00a31.50 toll)." },
       transit: { name: "Hull Paragon Interchange", coords: [53.744, -0.344], desc: "Rail connections across Humberside.", alert: "Cross-Humber public transit is limited; car strongly recommended." }
@@ -1362,6 +1368,7 @@ const ROTATIONS_DATA = [
     region: "Yorkshire and the Humber",
     title: "East Yorkshire 6-Monthly Rotations (5E)",
     places: "1",
+    isPool: true,
     hubs: {
       driver: { name: "Hessle / Humber Bridge (A15)", coords: [53.715, -0.445], desc: "Immediate access to Humber Bridge. 12m to Hull Royal; 25m south to Scunthorpe; 35m to Grimsby.", alert: "Humber Bridge connects north and south banks seamlessly (\u00a31.50 toll)." },
       transit: { name: "Hull Paragon Interchange", coords: [53.744, -0.344], desc: "Rail connections across Humberside.", alert: "Cross-Humber public transit is limited; car strongly recommended." }
@@ -1380,6 +1387,7 @@ const ROTATIONS_DATA = [
     region: "Wessex",
     title: "Wessex Core Anaesthetics Scheme (8 Places)",
     places: "8",
+    isPool: true,
     hubs: {
       driver: { name: "Winchester / Eastleigh (M3/M27)", coords: [51.025, -1.335], desc: "Central Wessex hub. 18m to Southampton, 28m to Portsmouth, 22m to Basingstoke.", alert: "Premier driving base for the Wessex training network." },
       transit: { name: "Eastleigh / Southampton Central", coords: [50.968, -1.353], desc: "Direct rail to Winchester (12m), Basingstoke (22m), and Portsmouth (40m).", alert: "Frequent train services along the South Coast rail line." }
@@ -1401,6 +1409,7 @@ const ROTATIONS_DATA = [
     region: "Wessex",
     title: "Wessex Core Anaesthetics Scheme (1E)",
     places: "1",
+    isPool: true,
     hubs: {
       driver: { name: "Winchester / Eastleigh (M3/M27)", coords: [51.025, -1.335], desc: "Central Wessex hub. 18m to Southampton, 28m to Portsmouth, 22m to Basingstoke.", alert: "Premier driving base for the Wessex training network." },
       transit: { name: "Eastleigh / Southampton Central", coords: [50.968, -1.353], desc: "Direct rail to Winchester (12m), Basingstoke (22m), and Portsmouth (40m).", alert: "Frequent train services along the South Coast rail line." }
@@ -1550,6 +1559,7 @@ const ROTATIONS_DATA = [
     region: "North East",
     title: "North East & Cumbria 6-Monthly Scheme (4 Places)",
     places: "4",
+    isPool: true,
     hubs: {
       driver: { name: "Newcastle / Gateshead (A1 corridor)", coords: [54.965, -1.615], desc: "Central North East hub. 10m to RVI/Freeman, 20m to Sunderland Royal via A184/A19.", alert: "Carlisle is ~58 mi west via the A69 across northern Pennines." },
       transit: { name: "Newcastle Central Station / Metro", coords: [54.968, -1.617], desc: "Tyne & Wear Metro connects directly to RVI (Haymarket) and Sunderland.", alert: "Metro network provides seamless links across Newcastle, Gateshead and Sunderland." }
@@ -1747,6 +1757,7 @@ const ROTATIONS_DATA = [
     region: "North West",
     title: "Greater Manchester Anaesthesia Scheme (13 Places)",
     places: "13",
+    isPool: true,
     hubs: {
       driver: { name: "Sale / Altrincham / M60 J6-8", coords: [53.425, -2.315], desc: "M60 orbital motorway access: 15m to Wythenshawe, 18m to Salford Royal, 20m to MRI.", alert: "M60 ring road provides rapid connections across Greater Manchester." },
       transit: { name: "Manchester Piccadilly / Metrolink", coords: [53.477, -2.231], desc: "Extensive Metrolink tram network and local rail connecting all Manchester hospitals.", alert: "Metrolink connects directly to Salford Royal and Wythenshawe." }
@@ -1765,6 +1776,7 @@ const ROTATIONS_DATA = [
     region: "North West",
     title: "Greater Manchester Anaesthesia Scheme (2E)",
     places: "2",
+    isPool: true,
     hubs: {
       driver: { name: "Sale / Altrincham / M60 J6-8", coords: [53.425, -2.315], desc: "M60 orbital motorway access: 15m to Wythenshawe, 18m to Salford Royal, 20m to MRI.", alert: "M60 ring road provides rapid connections across Greater Manchester." },
       transit: { name: "Manchester Piccadilly / Metrolink", coords: [53.477, -2.231], desc: "Extensive Metrolink tram network and local rail connecting all Manchester hospitals.", alert: "Metrolink connects directly to Salford Royal and Wythenshawe." }

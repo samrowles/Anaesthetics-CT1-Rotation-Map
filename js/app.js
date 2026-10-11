@@ -252,6 +252,17 @@ function syncShortlistOrder() {
 }
 
 // 6. ROTATION METRICS & DATA HELPERS
+/**
+ * Detects whether a rotation is a regional recruitment pool scheme
+ * where trainees are allocated locally to candidate hospital bases,
+ * rather than rotating through all listed hospitals sequentially.
+ */
+function isPoolRotation(rot) {
+  if (!rot) return false;
+  if (typeof rot.isPool === 'boolean') return rot.isPool;
+  return Array.isArray(rot.stages) && rot.stages.length > 2 && rot.stages.every(s => s.stage === 'CT1 - CT3');
+}
+
 function getRotationMaxDistance(rot) {
   if (!rot || !rot.stages) return 0;
   const coords = rot.stages.map(s => HOSPITALS[s.hosp] ? HOSPITALS[s.hosp].coords : null).filter(Boolean);
@@ -460,6 +471,8 @@ function renderRotationCardsFeed(list) {
     const split = getRotationTrainingSplit(r);
     const isSelected = r.id === currentSelectedId;
     const isComparing = compareList.includes(r.id);
+    const isPool = isPoolRotation(r);
+    const hospBases = getRotationHospitalBases(r);
 
     let activeHubName = r.hubs[currentCommuteMode === 'transit' ? 'transit' : 'driver'].name;
     let hubEmoji = currentCommuteMode === 'transit' ? '🚆' : '🚗';
@@ -482,11 +495,19 @@ function renderRotationCardsFeed(list) {
       openDetailsForRotation(r.id);
     };
 
+    const spreadTooltip = isPool 
+      ? `Estimated drive time to furthest candidate base at ${commute.timingShort}`
+      : `Estimated drive time at ${commute.timingShort}`;
+    const spreadLabel = isPool 
+      ? `${commute.maxDist} mi (span ~${commute.activeMins}m @ ${commute.timingShort})`
+      : `${commute.maxDist} mi (~${commute.activeMins}m @ ${commute.timingShort})`;
+
     card.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:6px;">
         <div style="display:flex; gap:5px; align-items:center; flex-wrap:wrap;">
           <span class="badge badge-code">${escapeHtml(r.code)}</span>
           <span class="badge badge-places">${escapeHtml(r.places)}</span>
+          ${isPool ? '<span class="badge badge-pool" title="Regional recruitment pool: Placements are candidate hospital bases allocated locally, not a sequential circuit">🏥 Pool Scheme</span>' : ''}
           <span class="badge badge-split" title="Training Balance: ${split.tertiary}% Tertiary, ${split.dgh}% DGH">${split.tertiary}% Tert • ${split.dgh}% DGH</span>
           ${tierBadgeHtml}
         </div>
@@ -494,17 +515,17 @@ function renderRotationCardsFeed(list) {
           <button class="btn-compare-action ${isComparing ? 'in-compare' : ''}" onclick="toggleCompareCard(event, '${r.id}')" title="Compare rotation">
             ${isComparing ? '✓ Comparing' : '+ Compare'}
           </button>
-          <span class="badge ${commute.badgeClass}" title="Estimated drive time at ${commute.timingShort}">${commute.maxDist} mi (~${commute.activeMins}m @ ${commute.timingShort})</span>
+          <span class="badge ${commute.badgeClass}" title="${spreadTooltip}">${spreadLabel}</span>
         </div>
       </div>
       <div class="card-list-title">${escapeHtml(r.title)}</div>
       <div class="card-list-hub">
-        <span>${hubEmoji} Base: <b>${escapeHtml(activeHubName)}</b></span>
+        <span>${hubEmoji} Base: <b>${escapeHtml(activeHubName)}</b>${isPool ? ` (${hospBases.length} Candidate Sites)` : ''}</span>
         <span style="color:var(--amber); font-weight:800; font-size:0.85rem;">${'★'.repeat(userData.rating) || '☆☆☆☆☆'}</span>
       </div>
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px; padding-top:6px; border-top:1px solid var(--border-color);">
         <span style="font-size:0.72rem; color:var(--text-muted);">${escapeHtml(r.region)}</span>
-        <button class="hospital-chip-btn" onclick="openDetailsForRotation('${r.id}')" style="font-size:0.72rem; padding:3px 9px;">Details &amp; Timeline &rarr;</button>
+        <button class="hospital-chip-btn" onclick="openDetailsForRotation('${r.id}')" style="font-size:0.72rem; padding:3px 9px;">${isPool ? 'Candidate Sites &amp; Intel &rarr;' : 'Details &amp; Timeline &rarr;'}</button>
       </div>
     `;
     container.appendChild(card);
@@ -849,6 +870,12 @@ function selectRotation(id, shouldCloseMobile = false) {
   document.getElementById('cardPlaces').textContent = `Places: ${rot.places}`;
   document.getElementById('cardTitle').textContent = rot.title;
 
+  const isPool = isPoolRotation(rot);
+  const cardPoolBadge = document.getElementById('cardPoolBadge');
+  if (cardPoolBadge) {
+    cardPoolBadge.style.display = isPool ? 'inline-block' : 'none';
+  }
+
   // Comparison toggle button state on card
   const cardCompareBtn = document.getElementById('cardCompareBtn');
   if (cardCompareBtn) {
@@ -948,6 +975,19 @@ function selectRotation(id, shouldCloseMobile = false) {
   });
 
   // Render Commute Matrix Breakdown from Chosen Base
+  const hospBoxTitle = document.getElementById('hospitalsBoxTitleText');
+  if (hospBoxTitle) {
+    hospBoxTitle.textContent = isPool 
+      ? '🏥 Candidate Hospital Bases in this Scheme:' 
+      : '🏥 Hospital Bases in this Rotation:';
+  }
+  const commuteTitle = document.getElementById('commuteMatrixTitleText');
+  if (commuteTitle) {
+    commuteTitle.textContent = isPool 
+      ? '🚗 Commute from Base to Candidate Sites:' 
+      : '🚗 Estimated Commute from Base:';
+  }
+
   document.getElementById('commuteMatrixHubName').textContent = activeHubName;
   const matrixContainer = document.getElementById('commuteMatrixList');
   matrixContainer.innerHTML = "";
@@ -972,10 +1012,11 @@ function selectRotation(id, shouldCloseMobile = false) {
         ? `${hData.coords[0]},${hData.coords[1]}`
         : encodeURIComponent(hName + ', UK');
 
+      const isTertiary = hData && hData.type === 'Tertiary';
       const row = document.createElement('div');
       row.className = "commute-matrix-item";
       row.innerHTML = `
-        <span class="commute-hosp-label">🏥 ${escapeHtml(hName)}</span>
+        <span class="commute-hosp-label">${isTertiary ? '🏛️' : '🏥'} ${escapeHtml(hName)}</span>
         <div style="display:flex; align-items:center; gap:6px;">
           <span class="commute-time-pill ${timeClass}" title="07:30 handover arrival: ~${mornMins}m | 18:00 evening rush departure: ~${eveMins}m">
             ${dist} mi (🌅 ~${mornMins}m · 🌆 ~${eveMins}m)
@@ -988,8 +1029,25 @@ function selectRotation(id, shouldCloseMobile = false) {
   });
 
   // Render Placement Timeline
+  const timelineHeading = document.getElementById('timelineHeading');
+  if (timelineHeading) {
+    timelineHeading.textContent = isPool 
+      ? 'CANDIDATE HOSPITAL BASES (ALLOCATED LOCALLY):' 
+      : 'ROTATION TIMELINE:';
+  }
+
   const timeline = document.getElementById('timelineContainer');
   timeline.innerHTML = "";
+
+  if (isPool) {
+    const banner = document.createElement('div');
+    banner.className = 'pool-notice-banner';
+    banner.innerHTML = `
+      <span style="font-size:1.1rem; line-height:1;">ℹ️</span>
+      <div><b>Regional Pool Allocation:</b> Placements are candidate hospital bases rather than a fixed sequential order. Trainees are matched to their trust base(s) after regional preferencing and induction.</div>
+    `;
+    timeline.appendChild(banner);
+  }
 
   rot.stages.forEach((stg, idx) => {
     const step = document.createElement('div');
@@ -1016,11 +1074,20 @@ function selectRotation(id, shouldCloseMobile = false) {
     const hospMapQuery = (h && h.coords && Array.isArray(h.coords))
       ? `${h.coords[0]},${h.coords[1]}`
       : encodeURIComponent(stg.hosp + ', UK');
+    const isTertiary = h && h.type === 'Tertiary';
+
+    const dotHtml = isPool 
+      ? `<div class="timeline-dot pool-dot ${isTertiary ? 'tertiary-dot' : ''}">${isTertiary ? '🏛️' : '🏥'}</div>` 
+      : `<div class="timeline-dot">${idx + 1}</div>`;
+
+    const stageHtml = isPool 
+      ? `<span class="badge badge-pool" style="padding:1px 6px; font-size:0.68rem;">Candidate Base</span>` 
+      : escapeHtml(stg.stage);
 
     step.innerHTML = `
-      <div class="timeline-dot">${idx + 1}</div>
+      ${dotHtml}
       <div class="timeline-content">
-        <div class="timeline-stage">${escapeHtml(stg.stage)}</div>
+        <div class="timeline-stage">${stageHtml}</div>
         <div class="timeline-hosp">
           <span>${escapeHtml(stg.hosp)}</span>
           <a href="https://www.google.com/maps/search/?api=1&query=${hospMapQuery}" target="_blank" style="color:var(--primary); font-size:0.7rem; text-decoration:none;">Map ↗</a>
@@ -1036,6 +1103,15 @@ function selectRotation(id, shouldCloseMobile = false) {
   document.getElementById('metricSites').textContent = uniqueHospBases.length;
   document.getElementById('metricDistance').textContent = `${commute.maxDist} mi`;
 
+  const metricSitesLabel = document.getElementById('metricSitesLabel');
+  if (metricSitesLabel) {
+    metricSitesLabel.textContent = isPool ? 'Candidate Bases' : 'Hospital Bases';
+  }
+  const metricDistanceLabel = document.getElementById('metricDistanceLabel');
+  if (metricDistanceLabel) {
+    metricDistanceLabel.textContent = isPool ? 'Network Span' : 'Max Spread';
+  }
+
   // Training Balance Split (Tertiary vs DGH)
   const split = getRotationTrainingSplit(rot);
   const splitTertiaryText = document.getElementById('splitTertiaryText');
@@ -1050,8 +1126,10 @@ function selectRotation(id, shouldCloseMobile = false) {
   }
 
   const spreadBadge = document.getElementById('cardSpreadBadge');
-  spreadBadge.textContent = `Max: ${commute.maxDist} mi`;
-  if (commute.activeMins <= 35) {
+  if (isPool) {
+    spreadBadge.className = 'badge badge-pool';
+    spreadBadge.textContent = `📍 Pool Span: ${commute.maxDist} mi (Max ~${commute.activeMins}m)`;
+  } else if (commute.activeMins <= 35) {
     spreadBadge.className = 'badge badge-spread-low';
     spreadBadge.textContent = `🟢 Low Spread: ${commute.maxDist} mi (🌅 ~${commute.mornMins}m · 🌆 ~${commute.eveMins}m)`;
   } else if (commute.activeMins <= 50) {
@@ -1064,9 +1142,9 @@ function selectRotation(id, shouldCloseMobile = false) {
 
   const modeEmoji = currentCommuteMode === 'transit' ? '🚆' : (currentCommuteMode === 'custom' ? '📍' : '🚗');
   document.getElementById('miniCardTitle').textContent = `${rot.title} (${rot.code})`;
-  document.getElementById('miniCardSpread').textContent = `${commute.maxDist} mi (~${commute.activeMins}m)`;
-  document.getElementById('miniCardSpread').className = `badge ${commute.badgeClass}`;
-  document.getElementById('miniCardHub').innerHTML = `<span>${modeEmoji} <b>${escapeHtml(activeHubName)}</b> (${uniqueHospBases.length} Bases)</span> <span style="font-weight:700; color:var(--primary);">Details &rarr;</span>`;
+  document.getElementById('miniCardSpread').textContent = isPool ? `${commute.maxDist} mi span (~${commute.activeMins}m)` : `${commute.maxDist} mi (~${commute.activeMins}m)`;
+  document.getElementById('miniCardSpread').className = `badge ${isPool ? 'badge-pool' : commute.badgeClass}`;
+  document.getElementById('miniCardHub').innerHTML = `<span>${modeEmoji} <b>${escapeHtml(activeHubName)}</b> (${uniqueHospBases.length} ${isPool ? 'Candidate Sites' : 'Bases'})</span> <span style="font-weight:700; color:var(--primary);">Details &rarr;</span>`;
 
   // Background subtle markers for other hospitals
   Object.keys(HOSPITALS).forEach(hName => {
@@ -1153,29 +1231,49 @@ function selectRotation(id, shouldCloseMobile = false) {
   });
 
   hospitalPlacements.forEach((data) => {
-    const stageNumbers = data.stages.map(s => s.num);
-    const isMulti = stageNumbers.length > 1;
-    const labelText = stageNumbers.join(', ');
+    const hospObj = HOSPITALS[data.hosp];
+    const isTertiary = hospObj && hospObj.type === 'Tertiary';
 
-    let iconWidth = 28;
-    if (stageNumbers.length === 2) {
-      iconWidth = 38;
-    } else if (stageNumbers.length >= 3) {
-      iconWidth = 54;
+    let icon;
+    if (isPool) {
+      icon = L.divIcon({
+        className: 'pool-site-pin' + (isTertiary ? ' tertiary-pool-pin' : ''),
+        html: isTertiary ? '🏛️' : '🏥',
+        iconSize: [28, 28],
+        iconAnchor: [14, 14]
+      });
+    } else {
+      const stageNumbers = data.stages.map(s => s.num);
+      const isMulti = stageNumbers.length > 1;
+      const labelText = stageNumbers.join(', ');
+
+      let iconWidth = 28;
+      if (stageNumbers.length === 2) {
+        iconWidth = 38;
+      } else if (stageNumbers.length >= 3) {
+        iconWidth = 54;
+      }
+
+      icon = L.divIcon({
+        className: 'numbered-pin' + (isMulti ? ' multi-stage-pin' : ''),
+        html: labelText,
+        iconSize: [iconWidth, 28],
+        iconAnchor: [Math.round(iconWidth / 2), 14]
+      });
     }
 
-    const icon = L.divIcon({
-      className: 'numbered-pin' + (isMulti ? ' multi-stage-pin' : ''),
-      html: labelText,
-      iconSize: [iconWidth, 28],
-      iconAnchor: [Math.round(iconWidth / 2), 14]
-    });
-
     let popupStagesHtml = '';
-    if (isMulti) {
+    if (isPool) {
+      popupStagesHtml = `
+        <div style="border-top:1px solid var(--border-color); padding-top:6px; font-size:0.78rem;">
+          <span class="badge badge-pool" style="padding:1px 6px; font-size:0.7rem;">Candidate Base</span>
+          <div style="color:var(--text-muted); font-size:0.73rem; margin-top:2px;">${escapeHtml(data.stages[0].desc || 'Candidate hospital base (allocated locally)')}</div>
+        </div>
+      `;
+    } else if (data.stages.length > 1) {
       popupStagesHtml = `
         <div style="font-size:0.75rem; color:var(--primary); font-weight:700; margin:4px 0 6px 0;">
-          🔄 Rotated in ${stageNumbers.length} placements:
+          🔄 Rotated in ${data.stages.length} placements:
         </div>
         <div style="display:flex; flex-direction:column; gap:6px; border-top:1px solid var(--border-color); padding-top:6px;">
           ${data.stages.map(s => `
@@ -1198,8 +1296,6 @@ function selectRotation(id, shouldCloseMobile = false) {
       `;
     }
 
-    const hospObj = HOSPITALS[data.hosp];
-    const isTertiary = hospObj && hospObj.type === 'Tertiary';
     const popupContent = `
       <div style="min-width:220px; max-width:290px;">
         <div style="font-weight:800; font-size:0.9rem; color:var(--text-main); margin-bottom:2px;">
@@ -1216,13 +1312,14 @@ function selectRotation(id, shouldCloseMobile = false) {
       </div>
     `;
 
-    const m = L.marker(data.coords, { icon, zIndexOffset: 1500 + (isMulti ? 50 : 0) })
+    const m = L.marker(data.coords, { icon, zIndexOffset: 1500 + (!isPool && data.stages.length > 1 ? 50 : 0) })
       .bindPopup(popupContent);
     activeRouteGroup.addLayer(m);
     activeHospitalMarkers[data.hosp] = m;
   });
 
-  if (plottedHospitalPoints.length > 1) {
+  // Polyline route: only draw for sequential tracks, NOT pool candidate schemes
+  if (!isPool && plottedHospitalPoints.length > 1) {
     const polyline = L.polyline(plottedHospitalPoints, {
       color: '#0284c7',
       weight: 3.5,
@@ -1262,6 +1359,9 @@ function renderAllPlacements({ fitView = true } = {}) {
   // 11a. Dashed route lines for every rotation in the filtered feed (region, pills, search)
   if (showOverviewLines) {
     currentFilteredList.forEach(rot => {
+      // Suppress connecting lines between candidate pool hospitals
+      if (isPoolRotation(rot)) return;
+
       const coords = rot.stages.map(s => HOSPITALS[s.hosp] ? HOSPITALS[s.hosp].coords : null).filter(Boolean);
       if (coords.length > 1) {
         const regColor = regionColorsMap[rot.region] || "#0284c7";
@@ -1970,8 +2070,11 @@ function renderCompareModal() {
             <th class="compare-label-th">Rotation Scheme</th>
             ${rotations.map(r => `
               <th class="compare-col-header">
-                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
-                  <span class="badge badge-code">${escapeHtml(r.code)}</span>
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px; gap:4px; flex-wrap:wrap;">
+                  <div style="display:flex; gap:4px; align-items:center;">
+                    <span class="badge badge-code">${escapeHtml(r.code)}</span>
+                    ${isPoolRotation(r) ? '<span class="badge badge-pool" style="font-size:0.68rem; padding:1px 5px;">🏥 Pool</span>' : ''}
+                  </div>
                   <button style="border:none; background:none; color:#b91c1c; font-size:0.75rem; font-weight:800; cursor:pointer;" onclick="toggleCompare('${r.id}'); renderCompareModal();">✕ Remove</button>
                 </div>
                 <div style="font-weight:800; font-size:0.88rem; margin-bottom:2px;">${escapeHtml(r.title)}</div>

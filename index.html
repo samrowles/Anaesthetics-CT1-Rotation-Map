@@ -178,6 +178,7 @@
         <div class="badge-container">
           <span class="badge badge-code" id="cardCode">Oriel Code</span>
           <span class="badge badge-places" id="cardPlaces">Places: -</span>
+          <span class="badge badge-pool" id="cardPoolBadge" style="display:none;">🏥 Pool Scheme</span>
           <span class="badge" id="cardSpreadBadge">Max: 0 mi</span>
           <span class="badge" id="cardTierBadge" style="display:none;">Tier 1</span>
         </div>
@@ -199,11 +200,11 @@
         <div class="metrics-bar">
           <div class="metric-item">
             <div class="metric-value" id="metricSites">0</div>
-            <div class="metric-label">Hospital Bases</div>
+            <div class="metric-label" id="metricSitesLabel">Hospital Bases</div>
           </div>
           <div class="metric-item">
             <div class="metric-value" id="metricDistance">0 mi</div>
-            <div class="metric-label">Max Spread</div>
+            <div class="metric-label" id="metricDistanceLabel">Max Spread</div>
           </div>
         </div>
 
@@ -222,7 +223,7 @@
         <!-- Commute Breakdown Matrix From Chosen Base -->
         <div class="commute-matrix-box">
           <div class="commute-matrix-title">
-            <span>🚗 Estimated Commute from Base:</span>
+            <span id="commuteMatrixTitleText">🚗 Estimated Commute from Base:</span>
             <span id="commuteMatrixHubName" style="font-size:0.7rem; color:var(--primary); font-weight:700;">Base Name</span>
           </div>
           <div id="commuteMatrixList"></div>
@@ -231,13 +232,13 @@
         <!-- Hospital Bases Section -->
         <div class="hospitals-box">
           <div class="hospitals-box-title">
-            <span>🏥 Hospital Bases in this Rotation:</span>
+            <span id="hospitalsBoxTitleText">🏥 Hospital Bases in this Rotation:</span>
             <span style="font-size:0.7rem; color:var(--text-muted); font-weight:normal;">Click 'Focus' to zoom pin</span>
           </div>
           <div id="hospitalsListContainer" class="hospitals-chip-list"></div>
         </div>
 
-        <div style="font-weight: 800; font-size: 0.76rem; margin-bottom: 8px; color: var(--text-muted);">ROTATION TIMELINE:</div>
+        <div id="timelineHeading" style="font-weight: 800; font-size: 0.76rem; margin-bottom: 8px; color: var(--text-muted);">ROTATION TIMELINE:</div>
         <div class="timeline" id="timelineContainer"></div>
 
         <!-- Rating, Tier & Shared Notes Section -->

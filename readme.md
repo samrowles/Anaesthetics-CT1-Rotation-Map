@@ -12,6 +12,11 @@ An interactive, open-source web application designed to help UK Anaesthetics tra
 - **Duration-Weighted Training Metric:** Automatically calculates the clinical split between Tertiary / Teaching hospitals and District General Hospitals (DGH), weighted by placement duration (e.g. 3-month, 6-month, or 12-month blocks).
 - **Visual Balance Bar:** Two-tone progress bar in the rotation inspector and compact badge pills (`XX% Tert • YY% DGH`) on rotation feed cards.
 
+### 🏥 Regional Pool vs Sequential Route Awareness
+- **Candidate Base vs Fixed Sequential Route:** Intelligently differentiates sequential multi-hospital rotations from regional recruitment pools (e.g., Wessex, Yorkshire networks, Greater Manchester, North East) where trainees are matched to 1–2 hospital bases after regional preferencing/induction rather than rotating through all sites on a circuit.
+- **Accurate Map & Timeline Presentation:** Suppresses misleading sequential stage numbers (`1, 2, 3...`) and artificial route lines across pool hospitals; displays clean candidate base pins (`🏥` DGH, `🏛️` Tertiary) and detailed individual drive time matrices from your living base to each possible placement site.
+
+
 ### ℹ️ Hospital Trust Profiles
   - 📋 **Electronic Patient Records (EPR):** System deployed (Epic, Cerner Millennium, CareFlow, Sunrise, Nervecentre, Meditech, Welsh Clinical Portal, etc.).
   - 🚗 **Doctor Parking Policies:** Barrier schemes, multi-storeys, staff permit rules, and Park & Ride options.
