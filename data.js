@@ -3,134 +3,933 @@
 // ============================================================================
 
 const HOSPITALS = {
-  // East Midlands
-  "Boston Pilgrim Hospital": { coords: [52.9892, -0.0071], region: "East Midlands" },
-  "Chesterfield Royal Hospital": { coords: [53.2272, -1.3912], region: "East Midlands" },
-  "Kings Mill Hospital, Mansfield": { coords: [53.1362, -1.2181], region: "East Midlands" },
-  "Leicester Royal Infirmary": { coords: [52.6282, -1.1342], region: "East Midlands" },
-  "Lincoln County Hospital": { coords: [53.2321, -0.5182], region: "East Midlands" },
-  "Northampton General Hospital": { coords: [52.2352, -0.8871], region: "East Midlands" },
-  "Nottingham City Hospital": { coords: [52.9862, -1.1612], region: "East Midlands" },
-  "Queen's Hospital, Burton": { coords: [52.8177, -1.656], region: "East Midlands" },
-  "Queen's Medical Centre (QMC), Nottingham": { coords: [52.9431, -1.1862], region: "East Midlands" },
-  "Royal Derby Hospital": { coords: [52.9102, -1.5121], region: "East Midlands" },
-
-  // East of England
-  "Bedford Hospital": { coords: [52.1292, -0.4683], region: "East of England" },
-  "Broomfield Hospital, Chelmsford": { coords: [51.7762, 0.4682], region: "East of England" },
-  "Colchester Hospital": { coords: [51.9142, 0.9011], region: "East of England" },
-  "Ipswich Hospital": { coords: [52.0543, 1.2001], region: "East of England" },
-  "James Paget Hospital, Great Yarmouth": { coords: [52.5492, 1.7161], region: "East of England" },
-  "Lister Hospital, Stevenage": { coords: [51.9162, -0.2154], region: "East of England" },
-  "Luton & Dunstable Hospital": { coords: [51.8972, -0.4721], region: "East of England" },
-  "Norfolk & Norwich University Hospital": { coords: [52.6181, 1.2212], region: "East of England" },
-  "Peterborough City Hospital": { coords: [52.5844, -0.2786], region: "East of England" },
-  "Princess Alexandra Hospital, Harlow": { coords: [51.7725, 0.0894], region: "East of England" },
-  "Queen Elizabeth Hospital, Kings Lynn": { coords: [52.7531, 0.4431], region: "East of England" },
-  "Watford General Hospital": { coords: [51.6471, -0.4035], region: "East of England" },
-
-  // Kent, Surrey and Sussex
-  "Maidstone Hospital": { coords: [51.2747, 0.4857], region: "Kent, Surrey and Sussex" },
-  "Medway Maritime Hospital, Gillingham": { coords: [51.3795, 0.5416], region: "Kent, Surrey and Sussex" },
-  "Tunbridge Wells Hospital (Pembury)": { coords: [51.1488, 0.3081], region: "Kent, Surrey and Sussex" },
-
-  // London
-  "Barnet Hospital (BCF)": { coords: [51.6521, -0.2223], region: "London" },
-  "Chelsea & Westminster Hospital": { coords: [51.4842, -0.1824], region: "London" },
-  "Hammersmith Hospital": { coords: [51.5171, -0.2372], region: "London" },
-  "Homerton University Hospital": { coords: [51.5504, -0.0483], region: "London" },
-  "Queen's Hospital, Romford": { coords: [51.5691, 0.1792], region: "London" },
-  "Royal Free Hospital": { coords: [51.5532, -0.1652], region: "London" },
-  "West Middlesex University Hospital": { coords: [51.4782, -0.3271], region: "London" },
-
-  // North East
-  "Cumberland Infirmary, Carlisle": { coords: [54.8965, -2.9577], region: "North East" },
-  "Freeman Hospital, Newcastle": { coords: [55.002, -1.594], region: "North East" },
-  "James Cook University Hospital, Middlesbrough": { coords: [54.552, -1.214], region: "North East" },
-  "Royal Victoria Infirmary, Newcastle": { coords: [54.9782, -1.6232], region: "North East" },
-  "Sunderland Royal Hospital": { coords: [54.9031, -1.4097], region: "North East" },
-
-  // North West
-  "Aintree University Hospital, Liverpool": { coords: [53.4616, -2.9434], region: "North West" },
-  "Arrowe Park Hospital (Wirral)": { coords: [53.3699, -3.096], region: "North West" },
-  "Countess of Chester Hospital": { coords: [53.2086, -2.8986], region: "North West" },
-  "Leighton Hospital, Crewe": { coords: [53.1199, -2.4778], region: "North West" },
-  "Liverpool Women's Hospital (LWH)": { coords: [53.3985, -2.961], region: "North West" },
-  "Manchester Royal Infirmary": { coords: [53.4622, -2.2272], region: "North West" },
-  "Royal Bolton Hospital": { coords: [53.5539, -2.4299], region: "North West" },
-  "Royal Liverpool University Hospital": { coords: [53.4092, -2.9642], region: "North West" },
-  "Salford Royal Hospital": { coords: [53.4881, -2.3214], region: "North West" },
-  "Southport and Formby District General Hospital": { coords: [53.6338, -2.9787], region: "North West" },
-  "Stepping Hill Hospital, Stockport": { coords: [53.3839, -2.1318], region: "North West" },
-  "Warrington Hospital": { coords: [53.3938, -2.6097], region: "North West" },
-  "Whiston Hospital, Prescot": { coords: [53.4208, -2.7877], region: "North West" },
-  "Wythenshawe Hospital, Manchester": { coords: [53.3897, -2.295], region: "North West" },
-
-  // South West - Peninsula
-  "Derriford Hospital, Plymouth": { coords: [50.4162, -4.1162], region: "South West - Peninsula" },
-  "Musgrove Park Hospital, Taunton": { coords: [51.0142, -3.1202], region: "South West - Peninsula" },
-  "North Devon District Hospital, Barnstaple": { coords: [51.0922, -4.0504], region: "South West - Peninsula" },
-  "Royal Cornwall Hospital, Truro": { coords: [50.2712, -5.0931], region: "South West - Peninsula" },
-
-  // South West - Severn
-  "Bristol Royal Infirmary (UHBW)": { coords: [51.4582, -2.5971], region: "South West - Severn" },
-  "Gloucestershire Royal Hospital": { coords: [51.8682, -2.2341], region: "South West - Severn" },
-  "Great Western Hospital, Swindon": { coords: [51.5332, -1.7331], region: "South West - Severn" },
-  "Southmead Hospital (NBT)": { coords: [51.4972, -2.5931], region: "South West - Severn" },
-  "Yeovil District Hospital": { coords: [50.9452, -2.6339], region: "South West - Severn" },
-
-  // Thames Valley
-  "Horton General Hospital, Banbury": { coords: [52.0537, -1.3363], region: "Thames Valley" },
-  "John Radcliffe Hospital, Oxford": { coords: [51.7652, -1.2191], region: "Thames Valley" },
-  "Royal Berkshire Hospital, Reading": { coords: [51.4472, -0.9602], region: "Thames Valley" },
-  "Stoke Mandeville Hospital, Aylesbury": { coords: [51.7997, -0.8024], region: "Thames Valley" },
-  "Wycombe Hospital, High Wycombe": { coords: [51.6262, -0.7536], region: "Thames Valley" },
-
-  // Wales
-  "Glan Clwyd Hospital, Rhyl": { coords: [53.2682, -3.5161], region: "Wales" },
-  "Glangwili Hospital, Carmarthen": { coords: [51.8642, -4.2882], region: "Wales" },
-  "Grange University Hospital, Cwmbran": { coords: [51.647, -2.996], region: "Wales" },
-  "Morriston Hospital, Swansea": { coords: [51.6702, -3.9262], region: "Wales" },
-  "Prince Charles Hospital, Merthyr Tydfil": { coords: [51.7641, -3.3849], region: "Wales" },
-  "Princess of Wales Hospital, Bridgend": { coords: [51.5174, -3.5717], region: "Wales" },
-  "University Hospital of Wales, Cardiff": { coords: [51.5072, -3.1902], region: "Wales" },
-  "Ysbyty Gwynedd, Bangor": { coords: [53.209, -4.162], region: "Wales" },
-
-  // Wessex
-  "Basingstoke & North Hampshire Hospital": { coords: [51.2721, -1.1092], region: "Wessex" },
-  "Dorset County Hospital, Dorchester": { coords: [50.7132, -2.4462], region: "Wessex" },
-  "Poole Hospital": { coords: [50.7252, -1.9772], region: "Wessex" },
-  "Queen Alexandra Hospital, Portsmouth": { coords: [50.8492, -1.0712], region: "Wessex" },
-  "Royal Bournemouth Hospital": { coords: [50.7422, -1.8261], region: "Wessex" },
-  "Royal Hampshire County Hospital, Winchester": { coords: [51.0641, -1.3321], region: "Wessex" },
-  "Salisbury District Hospital": { coords: [51.0471, -1.7962], region: "Wessex" },
-  "Southampton General Hospital": { coords: [50.9341, -1.4322], region: "Wessex" },
-
-  // West Midlands
-  "New Cross Hospital, Wolverhampton": { coords: [52.5972, -2.0972], region: "West Midlands" },
-  "Queen Elizabeth Hospital Birmingham": { coords: [52.4512, -1.9402], region: "West Midlands" },
-  "Russells Hall Hospital, Dudley": { coords: [52.5024, -2.1191], region: "West Midlands" },
-  "UHCW Coventry": { coords: [52.4172, -1.4362], region: "West Midlands" },
-  "Warwick Hospital": { coords: [52.2852, -1.5972], region: "West Midlands" },
-
-  // Yorkshire and the Humber
-  "Airedale General Hospital, Steeton": { coords: [53.898, -1.9627], region: "Yorkshire and the Humber" },
-  "Barnsley Hospital": { coords: [53.5582, -1.5042], region: "Yorkshire and the Humber" },
-  "Bassetlaw Hospital, Worksop": { coords: [53.317, -1.1104], region: "Yorkshire and the Humber" },
-  "Bradford Royal Infirmary": { coords: [53.8042, -1.7962], region: "Yorkshire and the Humber" },
-  "Calderdale Royal Hospital, Halifax": { coords: [53.705, -1.8574], region: "Yorkshire and the Humber" },
-  "Diana, Princess of Wales Hospital, Grimsby": { coords: [53.5448, -0.0962], region: "Yorkshire and the Humber" },
-  "Doncaster Royal Infirmary": { coords: [53.5282, -1.1062], region: "Yorkshire and the Humber" },
-  "Goole and District Hospital": { coords: [53.7166, -0.8745], region: "Yorkshire and the Humber" },
-  "Harrogate District Hospital": { coords: [53.9937, -1.5176], region: "Yorkshire and the Humber" },
-  "Hull Royal Infirmary": { coords: [53.7442, -0.3582], region: "Yorkshire and the Humber" },
-  "Leeds General Infirmary": { coords: [53.8012, -1.5532], region: "Yorkshire and the Humber" },
-  "Northern General Hospital, Sheffield": { coords: [53.4152, -1.4582], region: "Yorkshire and the Humber" },
-  "Pinderfields Hospital, Wakefield": { coords: [53.6932, -1.4842], region: "Yorkshire and the Humber" },
-  "Rotherham Hospital": { coords: [53.4182, -1.3482], region: "Yorkshire and the Humber" },
-  "Scarborough Hospital": { coords: [54.2792, -0.4282], region: "Yorkshire and the Humber" },
-  "Scunthorpe General Hospital": { coords: [53.5902, -0.6692], region: "Yorkshire and the Humber" },
-  "York Hospital": { coords: [53.9702, -1.0832], region: "Yorkshire and the Humber" },
+  "Boston Pilgrim Hospital": {
+    coords: [52.9892, -0.0071],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "CareFlow / Medway EPR",
+    parking: "Ample on-site staff car parking; zero traffic congestion",
+    station: "Boston Rail Station (2.0 miles / quick bus)",
+    highlights: "Rural DGH experience, Solo list confidence building, Intensive Care Medicine exposure"
+  },
+  "Chesterfield Royal Hospital": {
+    coords: [53.2272, -1.3912],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "CareFlow EPR",
+    parking: "Plentiful staff parking on site; permit readily granted on induction",
+    station: "Chesterfield Rail Station (1.8 miles / 10m bus link)",
+    highlights: "Extremely friendly DGH reputation, High volume independent lists, Emergency General Surgery"
+  },
+  "Kings Mill Hospital, Mansfield": {
+    coords: [53.1362, -1.2181],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "Nervecentre EPR (Sherwood Forest Hospitals)",
+    parking: "Modern multi-storey staff parking with permit scheme; A38 corridor",
+    station: "Mansfield Rail Station (2.0 miles), Sutton Parkway (1.5 miles)",
+    highlights: "Outstanding CQC rated trust, Modern hospital layout, High trainee satisfaction in NTS"
+  },
+  "Leicester Royal Infirmary": {
+    coords: [52.6282, -1.1342],
+    region: "East Midlands",
+    type: "Tertiary",
+    epr: "Nervecentre EPR (UHL Trust-wide digital programme)",
+    parking: "Strict staff permit scheme; Leicester Hospital Hopper bus connects rail station",
+    station: "Leicester Rail Station (0.6 miles / 10m walk)",
+    highlights: "Major Trauma Centre, Leicester Children's Hospital, High-risk Obstetrics, Busy Emergency Floor"
+  },
+  "Lincoln County Hospital": {
+    coords: [53.2321, -0.5182],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "CareFlow / Medway EPR",
+    parking: "Staff parking permits available on site",
+    station: "Lincoln Central Rail Station (1.5 miles / 10m bus)",
+    highlights: "Trauma Unit, Vascular surgery, Supportive senior faculty, Close-knit anaesthetic department"
+  },
+  "Northampton General Hospital": {
+    coords: [52.2352, -0.8871],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "Nervecentre EPR",
+    parking: "Staff permit parking scheme on site; walking distance to town centre",
+    station: "Northampton Rail Station (1.2 miles / 20m walk)",
+    highlights: "Large acute DGH, Interventional Cardiology, Cancer Centre, Supportive anaesthetic department"
+  },
+  "Nottingham City Hospital": {
+    coords: [52.9862, -1.1612],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "Nervecentre EPR / Notis",
+    parking: "Staff permit parking scheme with good campus capacity; Medilink bus link",
+    station: "Nottingham Rail Station (3.8 miles / Medilink shuttle bus)",
+    highlights: "Regional Cardiothoracics & Thoracic Surgery, Burns & Plastics, Renal Transplant, Elective Hub"
+  },
+  "Queen's Hospital, Burton": {
+    coords: [52.8177, -1.656],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "Nervecentre / Lorenzo electronic records",
+    parking: "Staff permit scheme",
+    station: "Burton-on-Trent railway station (approx 1.5 miles)",
+    highlights: "Orthopaedic surgical centre, general surgery, obstetric anaesthesia and acute critical care"
+  },
+  "Queen's Medical Centre (QMC), Nottingham": {
+    coords: [52.9431, -1.1862],
+    region: "East Midlands",
+    type: "Tertiary",
+    epr: "Nervecentre EPR / Notis Clinical System",
+    parking: "Permit scheme strictly managed; Nottingham Express Transit (NET Tram) stops at hospital!",
+    station: "Nottingham Rail Station (2.2 miles / direct Tram connection in 12m)",
+    highlights: "Major Trauma Centre (one of UK's busiest), Nottingham Children's Hospital, Regional Neuro, Spine"
+  },
+  "Royal Derby Hospital": {
+    coords: [52.9102, -1.5121],
+    region: "East Midlands",
+    type: "DGH",
+    epr: "Lorenzo / CareFlow EPR (UHDB Trust)",
+    parking: "Staff permit scheme on site; Kingsway Park & Ride link",
+    station: "Derby Rail Station (2.8 miles / direct hospital buses)",
+    highlights: "Large modern PFI hospital, National Hand Surgery Centre (Pulvertaft), Bariatric, Vascular"
+  },
+  "Bedford Hospital": {
+    coords: [52.1292, -0.4683],
+    region: "East of England",
+    type: "DGH",
+    epr: "SystmOne / Bedfordshire Hospitals EPR",
+    parking: "Staff permit parking scheme across North & South wings",
+    station: "Bedford St Johns (0.4 miles / 8m walk), Bedford Midland (0.9 miles)",
+    highlights: "Friendly DGH training culture, General & Colorectal surgery, Vascular, Day Surgery"
+  },
+  "Broomfield Hospital, Chelmsford": {
+    coords: [51.7762, 0.4682],
+    region: "East of England",
+    type: "DGH",
+    epr: "Cerner Millennium / Lorenzo",
+    parking: "On-site staff parking permits available via Mid & South Essex Trust",
+    station: "Chelmsford Station (4.0 miles / direct C1/C2 bus connection)",
+    highlights: "St Andrew's Regional Burns & Plastic Surgery Centre, Head & Neck / MaxFax, Upper GI"
+  },
+  "Colchester Hospital": {
+    coords: [51.9142, 0.9011],
+    region: "East of England",
+    type: "DGH",
+    epr: "CareFlow / ESNEFT Digital Portal",
+    parking: "Staff permit scheme via ESNEFT; dedicated trainee permits allocated",
+    station: "Colchester North Station (1.2 miles / 20m walk or 5m bus)",
+    highlights: "Elective Orthopaedic Centre, Laparoscopic Colorectal Surgery, Busy Acute Theatres"
+  },
+  "Ipswich Hospital": {
+    coords: [52.0543, 1.2001],
+    region: "East of England",
+    type: "DGH",
+    epr: "Lorenzo / ESNEFT Portal",
+    parking: "Staff permit parking on-site; easy barrier access for on-call teams",
+    station: "Ipswich Rail Station (2.7 miles / direct hospital buses)",
+    highlights: "Major Trauma Unit, Spinal Surgery, Regional Gynaecology, High-volume independent lists"
+  },
+  "James Paget Hospital, Great Yarmouth": {
+    coords: [52.5492, 1.7161],
+    region: "East of England",
+    type: "DGH",
+    epr: "Lorenzo EPR",
+    parking: "Abundant on-site staff car parking; low congestion",
+    station: "Great Yarmouth Station (3.5 miles), Lowestoft Station (6 miles)",
+    highlights: "Supportive coastal DGH, Elective Orthopaedics, Day case surgery, Close consultant supervision"
+  },
+  "Lister Hospital, Stevenage": {
+    coords: [51.9162, -0.2154],
+    region: "East of England",
+    type: "DGH",
+    epr: "Lorenzo / CareFlow EPR",
+    parking: "On-site multi-storey with trainee parking permit system",
+    station: "Stevenage Rail Station (1.3 miles / 20m walk or quick bus)",
+    highlights: "Regional Renal Centre, Robotic Surgery, High-risk Obstetrics, Busy ITU"
+  },
+  "Luton & Dunstable Hospital": {
+    coords: [51.8972, -0.4721],
+    region: "East of England",
+    type: "DGH",
+    epr: "Cerner Millennium / Lorenzo",
+    parking: "Staff multi-storey parking adjacent to Lewsey Road; permit required",
+    station: "Leagrave Rail Station (1.5 miles / short bus)",
+    highlights: "Tertiary Neonatal Intensive Care (NICU), Regional Bariatric Centre, MaxFax, Busy Trauma"
+  },
+  "Norfolk & Norwich University Hospital": {
+    coords: [52.6181, 1.2212],
+    region: "East of England",
+    type: "Tertiary",
+    epr: "Lorenzo / Trust Electronic Portal (EPR)",
+    parking: "Staff permit scheme with qualifying criteria; Costessey Park & Ride frequent link",
+    station: "Norwich Rail Station (4.5 miles / direct hospital express buses)",
+    highlights: "Major Regional Teaching Hospital, Complex Paeds, Thoracics, Vascular, Major Head & Neck"
+  },
+  "Peterborough City Hospital": {
+    coords: [52.5844, -0.2786],
+    region: "East of England",
+    type: "DGH",
+    epr: "Oracle Cerner Millennium EPR",
+    parking: "Staff permit scheme with barrier access",
+    station: "Peterborough railway station (bus link / 10 min drive)",
+    highlights: "Modern PFI hospital, emergency vascular, acute orthopaedics, obstetrics and intensive care"
+  },
+  "Princess Alexandra Hospital, Harlow": {
+    coords: [51.7725, 0.0894],
+    region: "East of England",
+    type: "DGH",
+    epr: "Cerner Millennium (Electronic Health Record)",
+    parking: "Staff parking permits available on induction; on-site barrier controlled",
+    station: "Harlow Town Rail Station (1.1 miles / 15m walk)",
+    highlights: "High-volume Emergency General Surgery, Level 2 ICU, High-risk Labour Ward"
+  },
+  "Queen Elizabeth Hospital, Kings Lynn": {
+    coords: [52.7531, 0.4431],
+    region: "East of England",
+    type: "DGH",
+    epr: "CareFlow EPR",
+    parking: "Staff parking permits readily accessible on site",
+    station: "King's Lynn Rail Station (2.0 miles / direct bus link)",
+    highlights: "Autonomous DGH surgical experience, Obstetrics, General & Orthopaedic trauma"
+  },
+  "Watford General Hospital": {
+    coords: [51.6471, -0.4035],
+    region: "East of England",
+    type: "DGH",
+    epr: "Cerner Millennium (EPR)",
+    parking: "Multi-storey on-site parking for staff via application; pay & display fallback",
+    station: "Watford High Street (0.7 miles / 15m walk), Watford Junction (1.5 miles)",
+    highlights: "High-volume DGH, Acute Surgical Hub, Busy Maternity & Obstetric Anaesthesia"
+  },
+  "Maidstone Hospital": {
+    coords: [51.2747, 0.4857],
+    region: "Kent, Surrey and Sussex",
+    type: "DGH",
+    epr: "Altera Sunrise Electronic Patient Record",
+    parking: "Staff permit scheme",
+    station: "Barming railway station (10 min walk)",
+    highlights: "Kent Oncology Centre base, elective surgical hub, ophthalmology and general surgery"
+  },
+  "Medway Maritime Hospital, Gillingham": {
+    coords: [51.3795, 0.5416],
+    region: "Kent, Surrey and Sussex",
+    type: "DGH",
+    epr: "System C CareFlow clinical workspace",
+    parking: "Staff parking permit scheme with multi-storey",
+    station: "Gillingham (Kent) railway station (15-20 min walk / bus)",
+    highlights: "One of Kent's busiest acute hospitals, vascular surgery, high-volume obstetrics and trauma"
+  },
+  "Tunbridge Wells Hospital (Pembury)": {
+    coords: [51.1488, 0.3081],
+    region: "Kent, Surrey and Sussex",
+    type: "DGH",
+    epr: "Altera Sunrise Electronic Patient Record",
+    parking: "Staff permit parking scheme with multi-storey",
+    station: "High Brooms or Tonbridge stations (bus connection)",
+    highlights: "First all single-room NHS hospital in England, trauma unit, acute surgery & critical care"
+  },
+  "Barnet Hospital (BCF)": {
+    coords: [51.6521, -0.2223],
+    region: "London",
+    type: "DGH",
+    epr: "Cerner Millennium (Royal Free London trust)",
+    parking: "Staff car parking permits available on site; easy access from A1 / M25",
+    station: "High Barnet (Northern line - 1.2 miles / 10m bus corridor)",
+    highlights: "Busy Acute DGH, General & Emergency surgery, Colorectal, Intensive Care Medicine"
+  },
+  "Chelsea & Westminster Hospital": {
+    coords: [51.4842, -0.1824],
+    region: "London",
+    type: "Tertiary",
+    epr: "Cerner Millennium (Full electronic prescribing & the EPR)",
+    parking: "Underground staff car park; limited trainee permits, cycling/transit popular",
+    station: "Fulham Broadway (District line - 12m walk), South Kensington (15m walk)",
+    highlights: "Regional Burns Centre, Specialist Paediatric Surgery, High-risk Obstetrics, Bariatrics"
+  },
+  "Hammersmith Hospital": {
+    coords: [51.5171, -0.2372],
+    region: "London",
+    type: "Tertiary",
+    epr: "Cerner Millennium (Imperial College Healthcare)",
+    parking: "Staff car parking permits available on induction; Central line nearby",
+    station: "East Acton Tube Station (Central line - 8m walk), White City (15m)",
+    highlights: "Cardiothoracic Surgery, Hepatobiliary (HPB) surgery, Renal Transplant, Gynae-Oncology"
+  },
+  "Homerton University Hospital": {
+    coords: [51.5504, -0.0483],
+    region: "London",
+    type: "DGH",
+    epr: "Oracle Cerner Millennium electronic patient records",
+    parking: "Extremely limited permit parking; excellent public transit",
+    station: "Homerton Overground station (3 min walk)",
+    highlights: "Level 3 neonatal intensive care, regional bariatric surgery, and active obstetric service"
+  },
+  "Queen's Hospital, Romford": {
+    coords: [51.5691, 0.1792],
+    region: "London",
+    type: "DGH",
+    epr: "CareFlow / Medway EPR",
+    parking: "Staff permit parking scheme via BHRUT",
+    station: "Romford Rail Station (Elizabeth Line - 0.7 miles / 12m walk or quick bus)",
+    highlights: "Major Acute DGH, Regional Neurosciences, High-risk Obstetrics, Hyper-acute Stroke"
+  },
+  "Royal Free Hospital": {
+    coords: [51.5532, -0.1652],
+    region: "London",
+    type: "Tertiary",
+    epr: "Cerner Millennium (Full electronic prescribing & charting)",
+    parking: "Heavily restricted staff parking; Underground / public transit strongly advised",
+    station: "Belsize Park (Northern line, 7m walk), Hampstead Heath (Overground, 3m walk)",
+    highlights: "Liver Transplant Centre, High Consequence Infectious Diseases (HCID), Vascular, Plastics"
+  },
+  "West Middlesex University Hospital": {
+    coords: [51.4782, -0.3271],
+    region: "London",
+    type: "DGH",
+    epr: "Cerner Millennium (Chelsea & Westminster trust)",
+    parking: "Staff car park with permit system on site; easy access from A4 / M4",
+    station: "Syon Lane Rail Station (0.5 miles / 10m walk), Isleworth (0.6 miles)",
+    highlights: "Friendly West London DGH, General & Emergency surgery, High-throughput elective theatre lists"
+  },
+  "Cumberland Infirmary, Carlisle": {
+    coords: [54.8965, -2.9577],
+    region: "North East",
+    type: "DGH",
+    epr: "System C CareFlow clinical workspace",
+    parking: "Staff permit scheme",
+    station: "Carlisle railway station (1.5 miles via bus/cycle)",
+    highlights: "Principal acute general hospital for north Cumbria, intensive care and emergency theatres"
+  },
+  "Freeman Hospital, Newcastle": {
+    coords: [55.002, -1.594],
+    region: "North East",
+    type: "Tertiary",
+    epr: "Oracle Cerner Millennium (Newcastle eRecord)",
+    parking: "Newcastle Hospitals permit scheme / High Friars",
+    station: "Longbenton Metro station (15 min walk / direct shuttle)",
+    highlights: "World-renowned cardiothoracic transplantation, liver/renal transplant, vascular and oncology"
+  },
+  "James Cook University Hospital, Middlesbrough": {
+    coords: [54.552, -1.214],
+    region: "North East",
+    type: "Tertiary",
+    epr: "Altera Digital Health (Sunrise EPR)",
+    parking: "Staff permit parking scheme with dedicated barriers",
+    station: "James Cook rail halt (dedicated on-site railway platform)",
+    highlights: "Major Trauma Centre, neurosurgery, cardiothoracics, vascular and specialist tertiary services"
+  },
+  "Royal Victoria Infirmary, Newcastle": {
+    coords: [54.9782, -1.6232],
+    region: "North East",
+    type: "Tertiary",
+    epr: "Cerner Millennium (e-Record - Newcastle Hospitals)",
+    parking: "Restricted city parking; Newcastle Metro (Haymarket) directly adjacent",
+    station: "Haymarket Metro Station (0.3 miles / 5m walk), Newcastle Central (0.8 miles)",
+    highlights: "Major Trauma Centre, Great North Children's Hospital, Neurosciences, High-risk Obstetrics"
+  },
+  "Sunderland Royal Hospital": {
+    coords: [54.9031, -1.4097],
+    region: "North East",
+    type: "DGH",
+    epr: "Meditech / Nervecentre electronic records",
+    parking: "Staff permit scheme with barrier access",
+    station: "Millfield Tyne and Wear Metro station (5 min walk)",
+    highlights: "Major teaching DGH, acute surgical emergencies, vascular hub, obstetrics and critical care"
+  },
+  "Aintree University Hospital, Liverpool": {
+    coords: [53.4616, -2.9434],
+    region: "North West",
+    type: "Tertiary",
+    epr: "Electronic EPR (transitioning with LUHFT)",
+    parking: "Staff permit parking scheme with on-site multi-storey",
+    station: "Fazakerley railway station (5 min walk)",
+    highlights: "Major Trauma Centre (Cheshire & Merseyside), regional maxillofacial surgery and stroke"
+  },
+  "Arrowe Park Hospital (Wirral)": {
+    coords: [53.3699, -3.096],
+    region: "North West",
+    type: "DGH",
+    epr: "Oracle Cerner Millennium electronic patient records",
+    parking: "Staff permit scheme with barrier access",
+    station: "Upton (Merseyside) or Birkenhead rail links via direct bus",
+    highlights: "Large teaching DGH, acute critical care, high-volume obstetrics and emergency theatres"
+  },
+  "Countess of Chester Hospital": {
+    coords: [53.2086, -2.8986],
+    region: "North West",
+    type: "DGH",
+    epr: "Oracle Cerner Millennium EPR",
+    parking: "Staff permit scheme with dedicated doctor bays",
+    station: "Bache railway station (adjacent, 2 min walk)",
+    highlights: "High-volume elective orthopaedics, obstetrics, critical care, and general surgery"
+  },
+  "Leighton Hospital, Crewe": {
+    coords: [53.1199, -2.4778],
+    region: "North West",
+    type: "DGH",
+    epr: "System C CareFlow / Medway EPR",
+    parking: "Staff permit parking scheme",
+    station: "Crewe railway station (approx 3 miles via bus)",
+    highlights: "Busy DGH anaesthesia, regional vascular unit, obstetrics, and high-volume trauma theatre"
+  },
+  "Liverpool Women's Hospital (LWH)": {
+    coords: [53.3985, -2.961],
+    region: "North West",
+    type: "Tertiary",
+    epr: "Electronic clinical records portal",
+    parking: "Staff permit scheme on-site",
+    station: "Edge Hill railway station (15 min walk / bus)",
+    highlights: "Europe's largest specialist obstetric tertiary hospital, neonatal ICU & advanced gynaecology"
+  },
+  "Manchester Royal Infirmary": {
+    coords: [53.4622, -2.2272],
+    region: "North West",
+    type: "Tertiary",
+    epr: "Hive (Epic Systems - full MFT trust-wide rollout)",
+    parking: "Permit allocation via MFT; Oxford Road bus corridor (busiest in Europe)",
+    station: "Manchester Oxford Road (1.2 miles / 15m walk or 5m bus)",
+    highlights: "Flagship Epic Trust, Royal Manchester Children's Hospital, Cardiothoracics, Renal/Pancreas Transplant"
+  },
+  "Royal Bolton Hospital": {
+    coords: [53.5539, -2.4299],
+    region: "North West",
+    type: "DGH",
+    epr: "Altera Sunrise EPR",
+    parking: "Staff permit scheme",
+    station: "Moses Gate railway station (15 min walk)",
+    highlights: "Regional Level 3 neonatal intensive care, high-birthrate obstetrics and emergency surgery"
+  },
+  "Royal Liverpool University Hospital": {
+    coords: [53.4092, -2.9642],
+    region: "North West",
+    type: "Tertiary",
+    epr: "CareFlow EPR (New state-of-the-art Royal building)",
+    parking: "Staff parking permit scheme with on-call priority; central city location",
+    station: "Liverpool Lime Street (0.8 miles / 15m walk)",
+    highlights: "Major Teaching Hospital, Major Trauma Centre, Pancreatic Surgery, Vascular, MaxFax"
+  },
+  "Salford Royal Hospital": {
+    coords: [53.4881, -2.3214],
+    region: "North West",
+    type: "Tertiary",
+    epr: "Dedalus Electronic Patient Record (NCA EPR)",
+    parking: "Staff permit scheme with Metrolink links",
+    station: "Eccles railway station / Metrolink tram (10 min walk)",
+    highlights: "Major Trauma Centre, regional neurosurgery, comprehensive stroke centre & intestinal failure"
+  },
+  "Southport and Formby District General Hospital": {
+    coords: [53.6338, -2.9787],
+    region: "North West",
+    type: "DGH",
+    epr: "System C Medway EPR",
+    parking: "Staff permit parking scheme",
+    station: "Meols Cop railway station (10 min walk)",
+    highlights: "Elective orthopaedics, acute medicine, rehabilitation and emergency surgical coverage"
+  },
+  "Stepping Hill Hospital, Stockport": {
+    coords: [53.3839, -2.1318],
+    region: "North West",
+    type: "DGH",
+    epr: "System C CareFlow clinical workspace",
+    parking: "Staff parking permit scheme",
+    station: "Woodsmoor railway station (5 min walk)",
+    highlights: "High-volume emergency admissions, laparoscopic surgery, obstetrics and critical care"
+  },
+  "Warrington Hospital": {
+    coords: [53.3938, -2.6097],
+    region: "North West",
+    type: "DGH",
+    epr: "Nervecentre / Lorenzo electronic records",
+    parking: "Staff permit parking scheme",
+    station: "Warrington Central & Bank Quay stations (approx 1 mile)",
+    highlights: "Acute emergency admissions, critical care, general surgery, trauma and obstetrics"
+  },
+  "Whiston Hospital, Prescot": {
+    coords: [53.4208, -2.7877],
+    region: "North West",
+    type: "DGH",
+    epr: "System C CareFlow clinical workspace",
+    parking: "Multi-storey staff permit scheme",
+    station: "Prescot railway station (10 min walk)",
+    highlights: "Regional Mersey Burns and Plastic Surgery Unit, high-volume acute theatres & trauma"
+  },
+  "Wythenshawe Hospital, Manchester": {
+    coords: [53.3897, -2.295],
+    region: "North West",
+    type: "Tertiary",
+    epr: "Epic Electronic Patient Record (MFT Hive)",
+    parking: "Staff permit scheme with Metrolink connection",
+    station: "Roundthorn Metrolink tram stop (adjacent, 3 min walk)",
+    highlights: "Major cardiothoracic centre, heart & lung transplantation, ECMO, regional burns & plastics"
+  },
+  "Derriford Hospital, Plymouth": {
+    coords: [50.4162, -4.1162],
+    region: "South West - Peninsula",
+    type: "Tertiary",
+    epr: "CareFlow / Epic deployment roadmap (UHP Trust)",
+    parking: "Multi-storey staff permit scheme; Plymouth Park & Ride link",
+    station: "Plymouth Rail Station (3.5 miles / regular hospital express bus)",
+    highlights: "Major Trauma Centre (Peninsula), Cardiothoracic Surgery, Neuroanaesthesia, Military Trauma"
+  },
+  "Musgrove Park Hospital, Taunton": {
+    coords: [51.0142, -3.1202],
+    region: "South West - Peninsula",
+    type: "DGH",
+    epr: "Epic Systems (Somerset NHS Foundation Trust)",
+    parking: "Staff permit scheme available; Taunton Silk Mills Park & Ride",
+    station: "Taunton Rail Station (2.0 miles / direct hospital bus)",
+    highlights: "Fully integrated Epic EPR system, Bariatric surgery, Vascular, Modern surgical centre"
+  },
+  "North Devon District Hospital, Barnstaple": {
+    coords: [51.0922, -4.0504],
+    region: "South West - Peninsula",
+    type: "DGH",
+    epr: "Epic Electronic Patient Record (Devon-wide MyCare)",
+    parking: "Staff permit parking scheme",
+    station: "Barnstaple railway station (bus link)",
+    highlights: "Comprehensive rural acute anaesthesia, general surgery, ICU, and remote medicine skills"
+  },
+  "Royal Cornwall Hospital, Truro": {
+    coords: [50.2712, -5.0931],
+    region: "South West - Peninsula",
+    type: "DGH",
+    epr: "CareFlow EPR (Treliske digital portal)",
+    parking: "Staff car parking permits available; on-site Park & Ride",
+    station: "Truro Rail Station (1.5 miles / direct hospital bus link)",
+    highlights: "Only acute trust in Cornwall, Vascular, High-risk Obstetrics, Paediatric surgery, Cornwall lifestyle"
+  },
+  "Bristol Royal Infirmary (UHBW)": {
+    coords: [51.4582, -2.5971],
+    region: "South West - Severn",
+    type: "Tertiary",
+    epr: "CareFlow / Medway Clinical Portal",
+    parking: "Restricted central Bristol parking; Park & Ride (Long Ashton) or cycling popular",
+    station: "Bristol Temple Meads (1.2 miles / 10m bus corridor)",
+    highlights: "Major Teaching Hospital, Bristol Heart Institute (Cardiac), Bristol Children's Hospital, Thoracics"
+  },
+  "Gloucestershire Royal Hospital": {
+    coords: [51.8682, -2.2341],
+    region: "South West - Severn",
+    type: "DGH",
+    epr: "InterSystems TrakCare EPR",
+    parking: "Multi-storey on-site staff car park; permit scheme available",
+    station: "Gloucester Rail Station (0.4 miles / 8m walk)",
+    highlights: "Busy Teaching DGH, Acute Surgical Floor, Vascular Surgery Hub, Dedicated Intensive Care"
+  },
+  "Great Western Hospital, Swindon": {
+    coords: [51.5332, -1.7331],
+    region: "South West - Severn",
+    type: "DGH",
+    epr: "SystmOne / Medway EPR",
+    parking: "Large staff car park adjacent to M4 Junction 15; permit system",
+    station: "Swindon Rail Station (3.5 miles / direct hospital buses)",
+    highlights: "High-volume Acute DGH, Emergency General Surgery, Orthopaedics, Supportive senior team"
+  },
+  "Southmead Hospital (NBT)": {
+    coords: [51.4972, -2.5931],
+    region: "South West - Severn",
+    type: "Tertiary",
+    epr: "CareFlow / Lorenzo EPR (Brunel Building digital site)",
+    parking: "Staff multi-storey parking permit scheme; M5 / M4 corridor",
+    station: "Bristol Parkway (2.8 miles / 15m bus link)",
+    highlights: "Major Trauma Centre, Brunel Building (Modern state-of-the-art facility), Regional Neuro, Plastics"
+  },
+  "Yeovil District Hospital": {
+    coords: [50.9452, -2.6339],
+    region: "South West - Severn",
+    type: "DGH",
+    epr: "Epic Electronic Patient Record (Somerset-wide)",
+    parking: "Staff multi-storey permit scheme",
+    station: "Yeovil Pen Mill railway station (bus link)",
+    highlights: "High-performing DGH, fast-track surgical pathways, ICU and acute obstetric anaesthesia"
+  },
+  "Horton General Hospital, Banbury": {
+    coords: [52.0537, -1.3363],
+    region: "Thames Valley",
+    type: "DGH",
+    epr: "Oracle Cerner Millennium (integrated Oxford EPR)",
+    parking: "Staff parking permit scheme",
+    station: "Banbury railway station (10-15 min walk)",
+    highlights: "Associate DGH base of Oxford Deanery, emergency medicine, elective general & trauma theatre"
+  },
+  "John Radcliffe Hospital, Oxford": {
+    coords: [51.7652, -1.2191],
+    region: "Thames Valley",
+    type: "Tertiary",
+    epr: "Cerner Millennium (Oxford University Hospitals EPR)",
+    parking: "Permit scheme with strict criteria; Thornhill / Water Eaton Park & Ride recommended",
+    station: "Oxford Rail Station (3.2 miles / frequent hospital express buses)",
+    highlights: "Major Trauma Centre, West Wing Neurosciences, Oxford Children's Hospital, Cardiothoracics"
+  },
+  "Royal Berkshire Hospital, Reading": {
+    coords: [51.4472, -0.9602],
+    region: "Thames Valley",
+    type: "DGH",
+    epr: "Cerner Millennium (Electronic patient records)",
+    parking: "Multi-storey on-site car park with staff permit scheme; M4 corridor",
+    station: "Reading Mainline Station (1.1 miles / 18m walk or frequent bus)",
+    highlights: "Large thriving DGH, Robotic Urology, Major Trauma Unit, Interventional Cardiology"
+  },
+  "Stoke Mandeville Hospital, Aylesbury": {
+    coords: [51.7997, -0.8024],
+    region: "Thames Valley",
+    type: "Tertiary",
+    epr: "System C CareFlow / Medway",
+    parking: "Staff permit parking scheme",
+    station: "Stoke Mandeville railway station (15 min walk)",
+    highlights: "National Spinal Injuries Centre (NSIC), regional burns unit, acute surgery and critical care"
+  },
+  "Wycombe Hospital, High Wycombe": {
+    coords: [51.6262, -0.7536],
+    region: "Thames Valley",
+    type: "DGH",
+    epr: "System C CareFlow clinical workspace",
+    parking: "Staff permit parking scheme",
+    station: "High Wycombe railway station (10 min walk)",
+    highlights: "Regional heart and stroke centre, high-volume elective day-case and inpatient surgical hub"
+  },
+  "Glan Clwyd Hospital, Rhyl": {
+    coords: [53.2682, -3.5161],
+    region: "Wales",
+    type: "DGH",
+    epr: "Welsh Clinical Portal (WCP) & Electronic Prescribing",
+    parking: "Free staff parking across NHS Wales sites; permit registration on induction",
+    station: "Rhyl Rail Station (3.8 miles / bus connection)",
+    highlights: "Sub-regional acute hospital, Level 2 ICU, North Wales Cancer Centre, High case variety"
+  },
+  "Glangwili Hospital, Carmarthen": {
+    coords: [51.8642, -4.2882],
+    region: "Wales",
+    type: "DGH",
+    epr: "Welsh Clinical Portal (WCP)",
+    parking: "Free on-site staff parking in NHS Wales",
+    station: "Carmarthen Rail Station (1.8 miles / bus link)",
+    highlights: "West Wales General Hospital, Rural emergency anaesthesia, Paediatrics, High autonomy"
+  },
+  "Grange University Hospital, Cwmbran": {
+    coords: [51.647, -2.996],
+    region: "Wales",
+    type: "Tertiary",
+    epr: "Welsh Clinical Portal (WCP) & Welsh Nursing Care Record",
+    parking: "Free staff permit parking on-site",
+    station: "Cwmbran railway station (bus link)",
+    highlights: "State-of-the-art specialist critical care centre, major emergency surgery & paediatric resuscitation"
+  },
+  "Morriston Hospital, Swansea": {
+    coords: [51.6702, -3.9262],
+    region: "Wales",
+    type: "Tertiary",
+    epr: "Welsh Clinical Portal (WCP) & Welsh Nursing Record",
+    parking: "Free staff parking across site; M4 Junction 45 direct slipway",
+    station: "Swansea Rail Station (4.5 miles / direct hospital buses)",
+    highlights: "Welsh Centre for Burns & Plastic Surgery, Cardiothoracic Centre, Major Trauma Centre, Bariatrics"
+  },
+  "Prince Charles Hospital, Merthyr Tydfil": {
+    coords: [51.7641, -3.3849],
+    region: "Wales",
+    type: "DGH",
+    epr: "Welsh Clinical Portal (WCP)",
+    parking: "Free staff parking scheme",
+    station: "Merthyr Tydfil railway station (bus connection)",
+    highlights: "Acute general hospital serving south Wales valleys, critical care and emergency theatres"
+  },
+  "Princess of Wales Hospital, Bridgend": {
+    coords: [51.5174, -3.5717],
+    region: "Wales",
+    type: "DGH",
+    epr: "Welsh Clinical Portal (WCP)",
+    parking: "Free staff permit parking on-site",
+    station: "Bridgend railway station (15 min walk / bus)",
+    highlights: "Acute general surgery, trauma and orthopaedics, obstetrics and intensive care unit"
+  },
+  "University Hospital of Wales, Cardiff": {
+    coords: [51.5072, -3.1902],
+    region: "Wales",
+    type: "Tertiary",
+    epr: "Welsh Clinical Portal (WCP) & Welsh Digital Record",
+    parking: "Free NHS Wales staff permit parking; Heath Park rail station nearby",
+    station: "Heath High Level / Heath Low Level Stations (0.5 miles / 10m walk)",
+    highlights: "Major Trauma Centre, Children's Hospital for Wales, Neurosciences, Cardiac Surgery, Transplant"
+  },
+  "Ysbyty Gwynedd, Bangor": {
+    coords: [53.209, -4.162],
+    region: "Wales",
+    type: "DGH",
+    epr: "Welsh Clinical Portal (WCP)",
+    parking: "Free staff permit parking on-site",
+    station: "Bangor (Gwynedd) railway station (approx 2 miles via bus)",
+    highlights: "Principal general hospital for north-west Wales, mountain medicine, ICU and trauma"
+  },
+  "Basingstoke & North Hampshire Hospital": {
+    coords: [51.2721, -1.1092],
+    region: "Wessex",
+    type: "DGH",
+    epr: "CareFlow / Lorenzo EPR",
+    parking: "Spacious on-site staff car parking with permits readily granted",
+    station: "Basingstoke Rail Station (2.2 miles / 10m bus connection)",
+    highlights: "World centre for Pseudomyxoma Peritonei (Peritoneal Malignancy), Colorectal, Friendly DGH"
+  },
+  "Dorset County Hospital, Dorchester": {
+    coords: [50.7132, -2.4462],
+    region: "Wessex",
+    type: "DGH",
+    epr: "SystmOne / CareFlow EPR",
+    parking: "Staff car parking permits available on induction; quiet town setting",
+    station: "Dorchester South / West Stations (0.7 miles / 14m walk)",
+    highlights: "Close-knit supportive DGH team, General Surgery, Acute Obstetrics, Great work-life balance"
+  },
+  "Poole Hospital": {
+    coords: [50.7252, -1.9772],
+    region: "Wessex",
+    type: "DGH",
+    epr: "CareFlow / Lorenzo EPR (UHD Trust)",
+    parking: "Staff car parking permits available; Poole town centre access",
+    station: "Poole Rail Station (0.6 miles / 12m walk)",
+    highlights: "Regional Trauma & Acute Surgical Hospital for Dorset, ENT & Head & Neck, Paediatric Theatres"
+  },
+  "Queen Alexandra Hospital, Portsmouth": {
+    coords: [50.8492, -1.0712],
+    region: "Wessex",
+    type: "DGH",
+    epr: "Epic Systems (Portsmouth Hospitals EPR)",
+    parking: "Staff multi-storey parking with permit scheme; easily accessible from M27/A3(M)",
+    station: "Cosham Rail Station (0.6 miles / 10m walk)",
+    highlights: "Large teaching DGH, Regional Renal Centre, Robotic Colorectal, High-volume Emergency Theatres"
+  },
+  "Royal Bournemouth Hospital": {
+    coords: [50.7422, -1.8261],
+    region: "Wessex",
+    type: "DGH",
+    epr: "CareFlow / Lorenzo EPR (UHD Trust)",
+    parking: "On-site staff car parking with permit scheme; A338 bypass link",
+    station: "Pokesdown Rail Station (1.8 miles), Christchurch (2.2 miles)",
+    highlights: "Major Elective Surgical Hub, High-volume Robotic Orthopaedics, Cardiac Intervention"
+  },
+  "Royal Hampshire County Hospital, Winchester": {
+    coords: [51.0641, -1.3321],
+    region: "Wessex",
+    type: "DGH",
+    epr: "CareFlow / Lorenzo EPR",
+    parking: "On-site staff car parking with permit system; M3 corridor",
+    station: "Winchester Rail Station (0.8 miles / 15m walk)",
+    highlights: "Charming historic DGH, High consultant involvement, General elective surgery & Orthopaedics"
+  },
+  "Salisbury District Hospital": {
+    coords: [51.0471, -1.7962],
+    region: "Wessex",
+    type: "DGH",
+    epr: "Lorenzo / CareFlow EPR",
+    parking: "Extensive on-site staff parking with minimal permit delays",
+    station: "Salisbury Rail Station (2.5 miles / regular hospital bus)",
+    highlights: "Regional Spinal Injuries Centre, Regional Plastic Surgery & Burns Unit, Friendly DGH lists"
+  },
+  "Southampton General Hospital": {
+    coords: [50.9341, -1.4322],
+    region: "Wessex",
+    type: "Tertiary",
+    epr: "CareFlow EPR / CHARM clinical records",
+    parking: "Multi-storey permit scheme with on-call priority; M27 / M3 access",
+    station: "Southampton Central (2.5 miles / direct hospital buses every 10m)",
+    highlights: "Major Trauma Centre, Wessex Neurosciences, Southampton Children's Hospital, Cardiothoracics"
+  },
+  "New Cross Hospital, Wolverhampton": {
+    coords: [52.5972, -2.0972],
+    region: "West Midlands",
+    type: "DGH",
+    epr: "CareFlow EPR (Royal Wolverhampton Trust)",
+    parking: "Staff car parking permit scheme on site",
+    station: "Wolverhampton Rail Station (1.8 miles / frequent bus link)",
+    highlights: "Heart & Lung Centre (Cardiothoracic Surgery), High-risk Obstetrics, High-volume emergency lists"
+  },
+  "Queen Elizabeth Hospital Birmingham": {
+    coords: [52.4512, -1.9402],
+    region: "West Midlands",
+    type: "Tertiary",
+    epr: "PICS (Prescribing, Information & Communication System - custom digital EPR)",
+    parking: "Permit criteria apply; University Rail Station directly connects to campus in 2m!",
+    station: "University (Birmingham) Rail Station (0.2 miles / 3m walk)",
+    highlights: "Major Trauma Centre, Royal Centre for Defence Medicine, Liver/Renal/Cardiac Transplant, Neuro"
+  },
+  "Russells Hall Hospital, Dudley": {
+    coords: [52.5024, -2.1191],
+    region: "West Midlands",
+    type: "DGH",
+    epr: "Altera Sunrise Electronic Patient Record",
+    parking: "Staff permit barrier parking scheme",
+    station: "Dudley Port or Cradley Heath rail links via bus",
+    highlights: "Busy Black Country acute hub, emergency theatre, vascular services and critical care"
+  },
+  "UHCW Coventry": {
+    coords: [52.4172, -1.4362],
+    region: "West Midlands",
+    type: "Tertiary",
+    epr: "CareFlow EPR",
+    parking: "Multi-storey staff permit scheme; M6 / M69 junction corridor",
+    station: "Coventry Rail Station (4.2 miles / direct hospital buses)",
+    highlights: "Major Trauma Centre, Cardiothoracic Surgery, Neurosurgery, Paediatric Theatres, Robotics"
+  },
+  "Warwick Hospital": {
+    coords: [52.2852, -1.5972],
+    region: "West Midlands",
+    type: "DGH",
+    epr: "Lorenzo / CareFlow EPR",
+    parking: "Staff car parking permits available; M40 corridor",
+    station: "Warwick Rail Station (0.4 miles / 8m walk)",
+    highlights: "Friendly Warwickshire DGH, Elective Orthopaedic Centre, General surgery, Great team spirit"
+  },
+  "Airedale General Hospital, Steeton": {
+    coords: [53.898, -1.9627],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "TPP SystmOne integrated acute electronic records",
+    parking: "Dedicated staff barrier permit scheme",
+    station: "Steeton & Silsden railway station (12 min walk / local bus)",
+    highlights: "Friendly DGH anaesthetics, general surgery, trauma orthopaedics and obstetrics"
+  },
+  "Barnsley Hospital": {
+    coords: [53.5582, -1.5042],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "SystmOne / Lorenzo EPR",
+    parking: "Staff car parking permits available on site; M1 Junction 37",
+    station: "Barnsley Interchange (1.2 miles / 10m bus link)",
+    highlights: "Friendly DGH team, General Surgery, Emergency Theatres, High trainee morale"
+  },
+  "Bassetlaw Hospital, Worksop": {
+    coords: [53.317, -1.1104],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "System C CareFlow electronic records",
+    parking: "Staff on-site parking permits",
+    station: "Worksop railway station (short bus/taxi link)",
+    highlights: "Community DGH anaesthetic base, day surgery, elective orthopaedics and acute care"
+  },
+  "Bradford Royal Infirmary": {
+    coords: [53.8042, -1.7962],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "Cerner Millennium (Electronic patient records)",
+    parking: "Staff permit scheme available; A6177 corridor",
+    station: "Bradford Forster Square (2.2 miles), Bradford Interchange (2.5 miles)",
+    highlights: "Major Teaching DGH, Vascular Hub, High-risk Obstetrics, Paediatric Theatres, MaxFax"
+  },
+  "Calderdale Royal Hospital, Halifax": {
+    coords: [53.705, -1.8574],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "Oracle Cerner Millennium EPR",
+    parking: "Staff permit scheme with park & ride links",
+    station: "Halifax railway station (1.5 miles via frequent bus)",
+    highlights: "Centralised acute inpatient care, paediatric surgery, and emergency obstetrics"
+  },
+  "Diana, Princess of Wales Hospital, Grimsby": {
+    coords: [53.5448, -0.0962],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "WebV in-house clinical portal & SystmOne",
+    parking: "Staff barrier parking scheme",
+    station: "Grimsby Town railway station (bus link)",
+    highlights: "Acute emergency services, intensive care, general surgery, and obstetric anaesthesia"
+  },
+  "Doncaster Royal Infirmary": {
+    coords: [53.5282, -1.1062],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "SystmOne / Medway EPR",
+    parking: "Staff parking permits on site; A1(M) / M18 corridor",
+    station: "Doncaster Rail Station (1.8 miles / 10m bus corridor)",
+    highlights: "Large Acute DGH, Emergency General Surgery, Orthopaedics, Close supervision"
+  },
+  "Goole and District Hospital": {
+    coords: [53.7166, -0.8745],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "WebV electronic clinical records",
+    parking: "On-site surface staff parking",
+    station: "Goole railway station (approx 1 mile)",
+    highlights: "Protected elective surgical centre, ophthalmology, orthopaedics and day-case surgery"
+  },
+  "Harrogate District Hospital": {
+    coords: [53.9937, -1.5176],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "CareFlow / SystmOne electronic records",
+    parking: "Staff permit scheme",
+    station: "Harrogate or Starbeck railway station (approx 15 min walk)",
+    highlights: "Outstanding training feedback, general anaesthesia, elective orthopaedics, and critical care"
+  },
+  "Hull Royal Infirmary": {
+    coords: [53.7442, -0.3582],
+    region: "Yorkshire and the Humber",
+    type: "Tertiary",
+    epr: "Lorenzo / CareFlow EPR",
+    parking: "Staff permit scheme on site; proximity to A63",
+    station: "Hull Paragon Interchange (0.8 miles / 15m walk)",
+    highlights: "Major Trauma Centre, Neurosciences, Vascular Surgery, Head & Neck, High-volume emergency floor"
+  },
+  "Leeds General Infirmary": {
+    coords: [53.8012, -1.5532],
+    region: "Yorkshire and the Humber",
+    type: "Tertiary",
+    epr: "PPM+ (Leeds Teaching Hospitals digital system)",
+    parking: "Strict permit allocation; central Leeds location near universities",
+    station: "Leeds City Rail Station (0.6 miles / 10m walk)",
+    highlights: "Major Trauma Centre, Leeds Children's Hospital, Cardiothoracic Surgery, Neurosciences, PICU"
+  },
+  "Northern General Hospital, Sheffield": {
+    coords: [53.4152, -1.4582],
+    region: "Yorkshire and the Humber",
+    type: "Tertiary",
+    epr: "Lorenzo / CareFlow (Sheffield Teaching Hospitals)",
+    parking: "Campus staff permit scheme; easily accessible from M1 Junction 36",
+    station: "Sheffield Rail Station (3.2 miles / direct hospital express buses)",
+    highlights: "Major Trauma Centre, Cardiothoracic Centre, Regional Spinal Injuries, Burns & Plastics"
+  },
+  "Pinderfields Hospital, Wakefield": {
+    coords: [53.6932, -1.4842],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "System C / Medway EPR",
+    parking: "Staff permit parking scheme on site; M1 / M62 corridor",
+    station: "Wakefield Westgate (1.5 miles / frequent bus link)",
+    highlights: "Regional Burns Centre, Regional Spinal Cord Injuries Centre, Trauma Unit, Modern PFI site"
+  },
+  "Rotherham Hospital": {
+    coords: [53.4182, -1.3482],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "Meditech EPR",
+    parking: "Staff permit scheme on site; M1 Junction 33 proximity",
+    station: "Rotherham Central (2.0 miles / bus link)",
+    highlights: "Community DGH feel, High-throughput elective theatres, General surgery, Paediatrics"
+  },
+  "Scarborough Hospital": {
+    coords: [54.2792, -0.4282],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "CareFlow EPR",
+    parking: "Staff car parking permits readily available",
+    station: "Scarborough Rail Station (1.6 miles / bus link)",
+    highlights: "Coastal DGH, High clinical autonomy, Supportive consultant team, Great seaside lifestyle"
+  },
+  "Scunthorpe General Hospital": {
+    coords: [53.5902, -0.6692],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "SystmOne / WebV EPR",
+    parking: "Staff parking permits available on induction; low congestion",
+    station: "Scunthorpe Rail Station (0.7 miles / 12m walk)",
+    highlights: "Supportive DGH, General & Trauma surgery, Independent list experience"
+  },
+  "York Hospital": {
+    coords: [53.9702, -1.0832],
+    region: "Yorkshire and the Humber",
+    type: "DGH",
+    epr: "CareFlow EPR",
+    parking: "Staff permit parking scheme; Rawcliffe Bar Park & Ride link",
+    station: "York Rail Station (1.3 miles / 20m walk or quick bus)",
+    highlights: "Teaching DGH, Head & Neck surgery, Orthopaedics, Excellent living location in historic York"
+  }
 };
 
 const REGION_COLORS = {
