@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CT1 Anaesthetics Rotation & Commute Explorer - Main Stylesheet
+   ST4 Anaesthetics Rotation & Commute Explorer - Main Stylesheet
    ========================================================================== */
 
 :root {
@@ -642,6 +642,13 @@ select:focus, input:focus, textarea:focus {
   box-shadow: 0 0 0 1px var(--primary);
 }
 
+.rotation-list-card.excluded-card {
+  opacity: 0.55;
+}
+.rotation-list-card.excluded-card:hover {
+  opacity: 0.9;
+}
+
 .card-list-title {
   font-size: 0.9rem;
   font-weight: 800;
@@ -1025,34 +1032,6 @@ select:focus, input:focus, textarea:focus {
 .timeline-hosp { font-weight: 800; color: var(--text-main); margin: 1px 0; display: flex; justify-content: space-between; align-items: center; }
 .timeline-desc { font-size: 0.72rem; color: var(--text-muted); }
 
-.timeline-dot.pool-dot {
-  font-size: 8px;
-  background: #0284c7;
-}
-.timeline-dot.pool-dot.tertiary-dot {
-  background: #7c3aed;
-}
-
-.pool-notice-banner {
-  background: #f0f9ff;
-  border: 1px solid #bae6fd;
-  color: #0369a1;
-  border-radius: 4px;
-  padding: 8px 10px;
-  font-size: 0.74rem;
-  line-height: 1.35;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  gap: 7px;
-}
-[data-theme="dark"] .pool-notice-banner {
-  background: #082f49;
-  border-color: #0284c7;
-  color: #e0f2fe;
-}
-
-
 /* --------------------------------------------------------------------------
    Rating & Tier Preferences Section
    -------------------------------------------------------------------------- */
@@ -1175,39 +1154,6 @@ select:focus, input:focus, textarea:focus {
   box-shadow: 0 3px 10px rgba(2, 132, 199, 0.45);
 }
 
-.pool-site-pin { 
-  background: #0284c7; 
-  color: #ffffff; 
-  font-size: 13px; 
-  border-radius: 50%; 
-  width: 28px !important; 
-  height: 28px !important; 
-  display: flex !important; 
-  align-items: center !important; 
-  justify-content: center !important; 
-  border: 2px solid #ffffff; 
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35); 
-  cursor: pointer; 
-  box-sizing: border-box;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.pool-site-pin:hover {
-  transform: scale(1.18);
-  box-shadow: 0 5px 14px rgba(2, 132, 199, 0.5);
-  z-index: 9999 !important;
-}
-
-.pool-site-pin.tertiary-pool-pin {
-  background: #7c3aed;
-  box-shadow: 0 3px 8px rgba(124, 58, 237, 0.4);
-}
-
-.pool-site-pin.tertiary-pool-pin:hover {
-  box-shadow: 0 5px 14px rgba(124, 58, 237, 0.6);
-}
-
-
 .home-pin-driver { 
   background: #16a34a; 
   color: #ffffff; 
@@ -1251,6 +1197,38 @@ select:focus, input:focus, textarea:focus {
   border: 2.5px solid #ffffff; 
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45); 
   cursor: pointer; 
+}
+
+.pool-site-pin { 
+  background: #0284c7; 
+  color: #ffffff; 
+  font-size: 13px; 
+  border-radius: 50%; 
+  width: 28px !important; 
+  height: 28px !important; 
+  display: flex !important; 
+  align-items: center !important; 
+  justify-content: center !important; 
+  border: 2px solid #ffffff; 
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35); 
+  cursor: pointer; 
+  box-sizing: border-box;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pool-site-pin:hover {
+  transform: scale(1.18);
+  box-shadow: 0 5px 14px rgba(2, 132, 199, 0.5);
+  z-index: 9999 !important;
+}
+
+.pool-site-pin.tertiary-pool-pin {
+  background: #7c3aed;
+  box-shadow: 0 3px 8px rgba(124, 58, 237, 0.4);
+}
+
+.pool-site-pin.tertiary-pool-pin:hover {
+  box-shadow: 0 5px 14px rgba(124, 58, 237, 0.6);
 }
 
 .overview-hosp-pin { 
