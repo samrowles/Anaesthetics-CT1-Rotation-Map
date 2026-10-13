@@ -2,6 +2,15 @@
 // CT1 Anaesthetics National Placement Data
 // ============================================================================
 
+const APP_CONFIG = {
+  storagePrefix: "anaesth_",
+  appTitle: "CT1 Anaesthetics National Rotation & Commute Explorer",
+  cycleName: "Aug 2026 / Feb 2027",
+  defaultCenter: [52.8, -1.8],
+  defaultZoom: 6
+};
+window.APP_CONFIG = APP_CONFIG;
+
 const HOSPITALS = {
   "Boston Pilgrim Hospital": {
     coords: [52.9892, -0.0071],
@@ -2181,12 +2190,8 @@ const ROTATIONS_DATA = [
   }
 ];
 
-function getRotationHospitalBases(rot) {
-  return [...new Set(rot.stages.map(s => s.hosp))];
-}
-
 // Window attachments for cross-script safety
 window.HOSPITALS = HOSPITALS;
 window.REGION_COLORS = REGION_COLORS;
 window.ROTATIONS_DATA = ROTATIONS_DATA;
-window.getRotationHospitalBases = getRotationHospitalBases;
+
