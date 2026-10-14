@@ -97,7 +97,7 @@
         <span class="strip-label">Base:</span>
         <div class="transport-toggle strip-toggle">
           <button class="transport-btn active" id="btnModeDriver" onclick="setCommuteMode('driver')">Driver</button>
-          <button class="transport-btn" id="btnModeTransit" onclick="setCommuteMode('transit')">Transit</button>
+          <button class="transport-btn" id="btnModeTransit" onclick="setCommuteMode('transit')">Public Transport</button>
           <button class="transport-btn" id="btnModeCustom" onclick="setCommuteMode('custom')">My Base</button>
         </div>
         <button class="btn-link-action" onclick="openCustomBaseModal()" title="Set your prospective home postcode">
@@ -320,8 +320,8 @@
 <div id="map">
   <!-- Map Floating Overlay Controls -->
   <div class="map-floating-overlay">
-    <button class="map-float-btn active-btn" id="btnMapLinesToggle" onclick="toggleOverviewLines()" title="Toggle dashed rotation network lines on overview map">
-      Lines: ON
+    <button class="map-float-btn active-btn" id="btnMapLinesToggle" onclick="toggleOverviewLines()" title="Toggle rotation network lines: All → Core Bases → OFF">
+      Lines: All
     </button>
     <button class="map-float-btn" onclick="locateUserOnMap()" title="Show my current GPS location on the map">
       Locate Me
