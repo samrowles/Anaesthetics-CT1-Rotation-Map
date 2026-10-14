@@ -3,7 +3,7 @@
  * Provides offline resilience for hospital basements, theatres, and poor connectivity environments.
  */
 
-const CACHE_NAME = 'ct1-explorer-v5';
+const CACHE_NAME = 'ct1-explorer-v6';
 const STATIC_ASSETS = [
   './',
   './index.html',
