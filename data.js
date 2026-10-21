@@ -3,7 +3,7 @@
 // ============================================================================
 
 const APP_CONFIG = {
-  storagePrefix: "anaesth_",
+  storagePrefix: "ct1_",
   appTitle: "CT1 Anaesthetics National Rotation & Commute Explorer",
   cycleName: "Aug 2026 / Feb 2027",
   defaultCenter: [52.8, -1.8],
