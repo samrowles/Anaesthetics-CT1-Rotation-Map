@@ -4,7 +4,7 @@
  */
 
 const CACHE_PREFIX = 'ct1-';
-const CACHE_NAME = 'ct1-explorer-v8';
+const CACHE_NAME = 'ct1-explorer-v9';
 const TILE_CACHE = 'ct1-map-tiles';
 const MAX_TILES = 1500;
 
